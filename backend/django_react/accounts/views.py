@@ -7,10 +7,10 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import FileUploadParser
 
-'''class accountsListCreate(generics.ListCreateAPIView):
-    queryset = accounts.objects.all()
-    serializer_class = accountsSerializer
-'''
+# class accountsListCreate(generics.ListCreateAPIView):
+#     queryset = accounts.objects.all()
+#     serializer_class = accountsSerializer
+
 
 # class accountsListCreate(APIView):
 #     def get(self, request, format=None):
@@ -56,7 +56,7 @@ class accountsListCreate(APIView):
         print("serializer")
         if serializer.is_valid():
             print("serializer is  valid")
-            serializer.create()
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

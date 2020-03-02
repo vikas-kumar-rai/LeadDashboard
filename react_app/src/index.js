@@ -1,15 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-//import LeadDashboard from './LeadDashboard';
+// import App from './App';
+import Newlead from './Newlead';
+// import Comment from './Comment';
+// import Accepted from './Accepted';
+// import LeadDashboard from './LeadDashboard';
 //import Department from './Department';
 import * as serviceWorker from './serviceWorker';
-//import Pitched from './Pitched';
 //import Attachment from './Attachment';
 import 'bootstrap/dist/css/bootstrap.min.css';  
-ReactDOM.render(<App/>, document.getElementById('root'));
-
+// ReactDOM.render(<App/>, document.getElementById('root'));
+// ReactDOM.render(<Comment/>, document.getElementById('root'));
+// ReactDOM.render(<Accepted/>, document.getElementById('root'));
+ReactDOM.render(<Newlead/>, document.getElementById('root'));
+// ReactDOM.render(<LeadDashboard/>, document.getElementById('root'));
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA

@@ -1,10 +1,10 @@
 import React,{Component} from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 // import {table} from 'react-bootstrape';
 import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios'
 import './Newlead.css'
-import { ListGroup, Row ,Col} from 'reactstrap';
+import {Row ,Col} from 'reactstrap';
 
 class Newlead extends Component{
     constructor(props) {
@@ -35,7 +35,8 @@ class Newlead extends Component{
             City: '',
             State: '',
             Country: '',
-            Phone: ''
+            Phone: '',
+            Status : 'New'
         }
   
 /*
@@ -60,7 +61,6 @@ class Newlead extends Component{
 				console.log(error)
 			})
         }
-
 //      handleChange(e) {
 //        let fields = this.state.fields;
 //        fields[e.target.name] = e.target.value;
@@ -153,7 +153,7 @@ class Newlead extends Component{
 //
 //      }
     render(){
-               const { Title, Description, Source, Url, Domain, Tags, Technology, AssignTo, EstimatedBudget, ReferredBy, Attachment, FullName, Email, Company, Designation, SkypeID, StreetAddress, City, State, Country, Phone } = this.state
+    const { Title, Description, Source, Url, Domain, Tags, Technology, AssignTo, EstimatedBudget, ReferredBy, Attachment, FullName, Email, Company, Designation, SkypeID, StreetAddress, City, State, Country, Phone } = this.state
         return (
             <div>
                 <Row>
@@ -164,22 +164,22 @@ class Newlead extends Component{
                     </Col>
                     
                 </Row>
-                <form method="post" onSubmit={this.submitHandler} >
+                <form method="post" onSubmit={this.submitHandler} enctype="multipart/form-data" >
                 <Row>
-                    <Col sm={{ size: 'auto', offset: 1 }}>/Newlead
+                    <Col sm={{ size: 'auto', offset: 1 }}>
                             
                             <label for="myid">Title*</label><br></br>
                             <input type="text" name="Title" value={Title} onChange={this.changeHandler} className="title"/><br></br>
-                            <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div>
+                            {/* <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div> */}
                     </Col><br></br>
                     <Col sm={{ size: 'auto', offset: 4 }} className="Source">
-                            <label for="source">Source*</label><br></br>
+                            <label for="source" className="Source">Source*</label><br></br>
                             <select  name="Source" value={Source} onChange={this.changeHandler} id="Source" className="Source">
                             <option>choose any one</option>
                             <option select>java</option>
                             <option select>php</option>
                             </select>
-                            <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div>
+                            {/* <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div> */}
                     </Col>
                 </Row><br></br>
                 <Row>
@@ -191,7 +191,7 @@ class Newlead extends Component{
                         <label for="url">URL</label><br></br>
                         <input type="text" id="url" name="Url" value={Url} onChange={this.changeHandler} className="URL" /><br></br>
                         <label for="domain">Domain</label><br></br>
-                        <select id="domain" className="Domain">
+                        <select id="domain" name="Domain" value={Domain} onChange={this.changeHandler} className="Domain">
                             <option >choose any one</option>
                             <option select>yahoo</option>
                             <option select>google</option>
@@ -204,14 +204,14 @@ class Newlead extends Component{
                 <Row>  
                     <Col sm={{ size: 'auto', offset: 1 }}>    
                         <div>
-                            <label for="attechment">Attechment</label>
+                            <label for="attechment">Attachment</label>
                             <input type="file" id="attechment" name="Attachment" value={Attachment} onChange={this.changeHandler} className="Attechment"/>
                         </div><br></br>
                         
                     </Col>
                     <Col sm={{ size: 'auto', offset: 4 }}>
                             <div className="Technology">
-                                <label for="technology">Technology</label><br></br>
+                                <label for="technology" className="Technology">Technology</label><br></br>
                                 <select id="technology" name="Technology" value={Technology} onChange={this.changeHandler} className="Technology">
                                 <option >choose any one</option>
                                 <option select>python</option>
@@ -232,8 +232,8 @@ class Newlead extends Component{
                         </div><br></br>
                     </Col>
                     <Col sm={{ size: 'auto', offset: 3 }} >
-                            <label for="Assigne" >Assignee*</label><br></br>
-                            <input type="radio"/>
+                            <label for="Assigne" className="assignee" >Assignee*</label><br></br>
+                            <input type="radio" className="assignee"/>
                             <label for="Assignee" >Assign To</label>
                             <select  name="AssignTo" value={AssignTo} onChange={this.changeHandler} id="Assignee" className="Assignto">
                             <option >choose any one</option>
@@ -267,8 +267,8 @@ class Newlead extends Component{
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <label for="email" >Email</label>
                             <input type="text" name="Email" value={Email} onChange={this.changeHandler} id="email" className="Email"/>
-                            <span className="add-icon" id="email">+</span>
-                            <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div>
+                            <button className="add-icon" id="email">+</button>
+                            {/* <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div> */}
                         </Col>
                         <Col className="City" >
                             <label for="city">City</label>
@@ -303,25 +303,25 @@ class Newlead extends Component{
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <label for="phone">Phone</label>
                             <input type="text" name="Phone" value={Phone} onChange={this.changeHandler} id="phone" className="mobileno"/>
-                            <span className="add-icon">+</span>
-                            <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div>
+                            <button className="add-icon" id="phone">+</button>
+                            {/* <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div> */}
                         </Col>
                     </Row>
                 </div><br></br>
                 <Row>
                     <Col sm={{ size: 'auto', offset: 1 }}>
                         <div >
-                            <button type="submit" value="submit">Submit and New</button>
+                            <button type="submit" value="submit" className ="btn btn-primary">Submit and New</button>
                         </div>
                     </Col>
                     <Col sm={{ size: 'auto', offset: 1 }}>
                     <   div >
-                            <button type="submit" value="submit">Submit</button>
+                            <button type="submit" value="submit" className ="btn btn-primary">Submit</button>
                         </div>
                     </Col>
                     <Col sm={{ size: 'auto', offset: 1 }}>
                         <div >
-                            <button type="submit"  className="Cancel" value="Cancel">Cancel</button>
+                            <button type="submit"  className="Cancel" className="btn btn-danger">Cancel</button>
                         </div>
                     </Col>
                 </Row>

@@ -1,9 +1,10 @@
 import React from 'react';
 import './CSS/form.css';
-
+// import Modal1 from './Modal1';
 
 
 import {Modal,Container,Row,Col,ButtonGroup,Button,ListGroup, ListGroupItem, Badge,Form,ButtonToolbar} from 'reactstrap';
+
 class ApiGet extends React.Component{
         constructor(props){
             super(props);
@@ -38,12 +39,12 @@ class ApiGet extends React.Component{
              
                    <Container className="themed-container" fluid="md">
                     <Row>
-                    <Col sm={{ size: 'auto', offset: 1 }}>
-                    <span>
-                  {dynamicData.Title}
-                    </span>
+                        <Col sm={{ size: 'auto', offset: 1 }}>
+                            <span>
+                                {dynamicData.Title}
+                            </span>
 
-                    </Col>
+                        </Col>
 
                     <Col sm={{ size: 'auto', offset: 2 }}>
                        <span>
@@ -113,13 +114,13 @@ class ApiGet extends React.Component{
                </Col>
            </Row>
           </Container>
-           )}  
+            )}
             </div>
              
             )
+             
 
-         }
-    
+            }
 }
 export default ApiGet;
  

@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
 //import Attachment from './Attachment';
-// import {table} from 'react-bootstrape';
+ 
 import 'bootstrap/dist/css/bootstrap.css';
 import './Comments.css';
-import Pitched from './Pitched';
+import Comment  from './Comment';
  
 
 class Comments extends Component{
@@ -11,18 +11,20 @@ class Comments extends Component{
         super(props);
         this.state = {
            
-          toggle7:false
+          toggle13:false,
+          toggle15:false
         };
-        this.toggle8=this.toggle8.bind(this);
+        this.toggle14=this.toggle14.bind(this);
       }
       
 
       
-      toggle8(e){
-        this.setState({toggle7:!this.state.toggle7});
+      toggle14(e){
+        this.setState({toggle13:!this.state.toggle13});
       }
     render(){
-      let  PitchedModalClose=()=>this.setState({toggle7:false})
+       
+     console.log (this.state.toggle13)
         return(
             <div className="bord" >
                  
@@ -32,10 +34,17 @@ class Comments extends Component{
                    
                    <h6> This is my second comment  </h6>
                    
-                   <button type="submit" onClick={this.toggle8}> ADD </button>
-                  <Pitched show={this.state.toggle7} onHide={PitchedModalClose}/>
+                   <button type="submit"  >ADD</button>
+                     {this.state.toggle13 &&  
+                     <div>
+                       <Comment/>
+                         
+                        
+                    </div>}
+                   
                    <p></p>
                 </fieldset>
+                
                 
             </div>
         )

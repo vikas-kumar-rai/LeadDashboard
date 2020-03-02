@@ -1,11 +1,11 @@
 import React from 'react';
  
 import './App.css';
-import Newlead from './Newlead';
+
 import LeadDashboard from './LeadDashboard';
-import Login from "./Login";
+import Login from "./Login"
 import {BrowserRouter as Router ,Route,Link} from "react-router-dom";
-import ApiGet from "./ApiGet";
+ 
 
 
 
@@ -23,8 +23,7 @@ render(){
             <switch>
                  <Route exact path ='/' component = {Login}/>
                  <Route path ='/LeadDashboard' component = {LeadDashboard}/>
-                 <Route path ='/Newlead' component = {Newlead}/>
-                 <Route path ='/ApiGet' component = {ApiGet}/>
+
             </switch>
           </div>
         </Router>

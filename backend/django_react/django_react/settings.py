@@ -52,7 +52,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'django_react.urls'
@@ -92,7 +91,7 @@ DATABASES = {
     'ENGINE': 'django.db.backends.mysql',
     'NAME': 'accounts',
     'USER': 'root',
-    'PASSWORD': '1234',
+    'PASSWORD': '123456',
     'HOST': 'localhost',
     'PORT': '3306'
     }
