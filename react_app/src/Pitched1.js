@@ -25,3 +25,17 @@ class Pitched1 extends React.Component{
     }
 }
 export default Pitched1;
+<div>
+                <h3>Comment</h3>
+                <textarea className="ne">
+                </textarea><br></br>
+                <Row >
+                    <Col>
+                        <button type="button" className="addtocalender">Add To Calender?</button>
+                    </Col>
+                    <Col>
+                        <button type="submit" className="sub">Submit</button>
+                    </Col>
+                </Row>
+                
+            </div>

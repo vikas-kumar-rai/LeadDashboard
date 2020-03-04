@@ -2,16 +2,14 @@ import React from 'react';
 import {Button,Modal,Form} from 'react-bootstrap';
 class Reject extends React.Component{
       render(){
+      
        return(
             
                 <Modal
-      {...this.props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-      
-      
-    >
+                  {...this.props}
+                  size="lg"
+                  aria-labelledby="contained-modal-title-vcenter"
+                  centered>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           <h3>Reason for Rejection</h3>

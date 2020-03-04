@@ -24,7 +24,7 @@ class Comments extends Component{
       }
     render(){
        
-     console.log (this.state.toggle13)
+   
         return(
             <div className="bord" >
                  
@@ -34,15 +34,10 @@ class Comments extends Component{
                    
                    <h6> This is my second comment  </h6>
                    
-                   <button type="submit"  >ADD</button>
-                     {this.state.toggle13 &&  
-                     <div>
-                       <Comment/>
-                         
-                        
-                    </div>}
+                   <button type="submit"  onClick={this.toggle14} >ADD</button>
+                     {this.state.toggle13 ?  (<Comment onHide={this.toggle14}/>) : ""}
                    
-                   <p></p>
+                    
                 </fieldset>
                 
                 

@@ -14,7 +14,7 @@ class LMSSystem1 extends Component{
         }
     }
     componentDidMount(){
-        fetch("http://localhost:8000/api/lead/")
+        fetch("http://localhost:8000/")
         .then((Response)=>
                 Response.json())
                 .then((findresponse)=>
@@ -46,19 +46,19 @@ class LMSSystem1 extends Component{
                         this.state.data.map((dynamicData,key)=>
                                             
                             {
-                                if (dynamicData.Title == this.props.value3) {
+                                if (dynamicData.Title === this.props.value3) {
                                     return (
                         <div className="lms1">
                                 <h3>{this.props.value3}</h3>
                             <Row>
                                 <Col>
-                                    <p>EstimatedBudget</p>
+                                    <p>Estimated Budget</p>
                                 </Col>
                                 <Col>
                                 <p>{dynamicData.EstimatedBudget}</p>
                                 </Col>
                                 <Col>
-                                    <p>Edit</p>
+                                    <p><a href="#" class="text-warning stretched-link">Edit</a></p>
                                 </Col>
                             </Row>
                             <Row>
@@ -81,7 +81,7 @@ class LMSSystem1 extends Component{
          
                      </Modal.Body>
                     <Modal.Footer>
-                    <Button onClick={this.props.onHide}>SUBMIT </Button>
+                    <Button onClick={this.props.onHide}>SUBMIT</Button>
                     </Modal.Footer>
                 </Modal>
                    

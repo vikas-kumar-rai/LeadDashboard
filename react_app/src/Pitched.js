@@ -1,7 +1,9 @@
 import React from 'react';
 import {Modal,Button ,Col,Row} from 'react-bootstrap';
+import {Label} from 'reactstrap';
 import './Attechments.css';
 class Pitched extends React.Component{
+    
     render(){
         return(
       
@@ -14,14 +16,14 @@ class Pitched extends React.Component{
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
+          
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
           <div> 
       <Row>
                     <Col sm={{ size: 'auto', offset: 1 }}>
-                        <h3>Attechments</h3>
+                        <h3>Attachments</h3>
                     </Col>
                 </Row>
                 <Row>
@@ -42,10 +44,10 @@ class Pitched extends React.Component{
                         <br></br>
                         <br></br>
                         <br></br>
-                        <label for="http">http://</label>
+                        <Label htmlFor="http">http://</Label>
                             <input type="text" id="http" className="http"/><br></br>
                             <br></br>
-                            <button type="submit" className="add">Add</button>
+                             
                     </Col>
 
                 </Row>
@@ -53,7 +55,7 @@ class Pitched extends React.Component{
          
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={this.props.onHide}>Close</Button>
+        <Button onClick={this.props.onHide}>Submit</Button>
       </Modal.Footer>
     </Modal>
             
