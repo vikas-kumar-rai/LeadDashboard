@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 // import ReactDOM from 'react-dom';
 // import {table} from 'react-bootstrape';
 import 'bootstrap/dist/css/bootstrap.css';
-import axios from 'axios'
-import './Newlead.css'
-import { Row, Col } from 'reactstrap';
+import axios from 'axios';
+import './Newlead.css';
+// import bootstrap from 'react-bootstrape';
+// import main from './main';
+// import 'jquery/dist/jquery.min.js'
+// import { Form,Button, FormGroup, FormControl,} from "react-bootstrap";
+import { Row, Col, Label } from 'reactstrap';
 
 class Newlead extends Component {
     constructor(props) {
@@ -44,6 +48,8 @@ class Newlead extends Component {
                 this.submituserRegistrationForm = this.submituserRegistrationForm.bind(this);
           
         */
+       
+   
     }      
     changeHandler = e => {
         this.setState({ [e.target.name]: e.target.value })
@@ -155,26 +161,22 @@ class Newlead extends Component {
         const { Title, Description, Source, Url, Domain, Tags, Technology, AssignTo, EstimatedBudget, ReferredBy, Attachment, FullName, Email, Company, Designation, SkypeID, StreetAddress, City, State, Country, Phone } = this.state
         return (
             <div>
-
-
                 <Row>
                     <Col sm={{ size: 'auto', offset: 1 }}>
                         <div>
                             <h4>New Lead</h4>
                         </div>
                     </Col>
-
                 </Row>
-                <form method="post" onSubmit={this.submitHandler} enctype="multipart/form-data" id="create-course-form">
+                <form action="" method="post" encType="multipart/form-data" onSubmit={this.submitHandler} id="create-course-form">
                     <Row>
                         <Col sm={{ size: 'auto', offset: 1 }}>
-
-                            <label for="myid">Title*</label><br></br>
+                            <Label for="myid">Title*</Label><br></br>
                             <input type="text" name="Title" value={Title} onChange={this.changeHandler} className="title"  /><br></br>
                             {/* <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div> */}
                         </Col><br></br>
                         <Col sm={{ size: 'auto', offset: 4 }} className="Source">
-                            <label for="source" className="Source">Source*</label><br></br>
+                            <Label for="source" className="Source">Source*</Label><br></br>
                             <select name="Source" value={Source} onChange={this.changeHandler} id="Source" className="Source">
                                 <option>choose any one</option>
                                 <option select>java</option>
@@ -189,30 +191,28 @@ class Newlead extends Component {
                             <textarea type="text" name="Description" value={Description} onChange={this.changeHandler} className="Description" /><br></br>
                         </Col>
                         <Col sm={{ size: 'auto', offset: 1 }}>
-                            <label for="url">URL</label><br></br>
+                            <Label for="url">URL</Label><br></br>
                             <input type="text" id="url" name="Url" value={Url} onChange={this.changeHandler} className="URL" /><br></br>
-                            <label for="domain">Domain</label><br></br>
+                            <Label for="domain">Domain</Label><br></br>
                             <select id="domain" name="Domain" value={Domain} onChange={this.changeHandler} className="Domain">
                                 <option >choose any one</option>
                                 <option select>yahoo</option>
                                 <option select>google</option>
                             </select><br></br>
-                            <label for="keywords">Keywords/Tags</label><br></br>
+                            <Label for="keywords">Keywords/Tags</Label><br></br>
                             <input type="text" id="keywords" name="Tags" value={Tags} onChange={this.changeHandler} className="Keywords" /><br></br>
                         </Col>
-
                     </Row><br></br>
                     <Row>
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <div>
-                                <label for="attechment">Attachment</label>
-                                <input type="file" id="attechment" name="Attachment" value={Attachment} onChange={this.changeHandler} className="Attechment" />
+                                <Label for="attechment">Attachment</Label>
+                                <input type="file" id="attechment" name="Attachment" label='File' value={Attachment} onChange={this.changeHandler} className="Attechment" />
                             </div><br></br>
-
                         </Col>
                         <Col sm={{ size: 'auto', offset: 4 }}>
                             <div className="Technology">
-                                <label for="technology" className="Technology">Technology</label><br></br>
+                                <Label for="technology" className="Technology">Technology</Label><br></br>
                                 <select id="technology" name="Technology" value={Technology} onChange={this.changeHandler} className="Technology">
                                     <option >choose any one</option>
                                     <option select>python</option>
@@ -224,18 +224,18 @@ class Newlead extends Component {
                     <Row>
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <div>
-                                <label for="estimated">Estimated Budget ($)</label>
+                                <Label for="estimated">Estimated Budget ($)</Label>
                                 <input type="text" id="estimated" name="EstimatedBudget" value={EstimatedBudget} onChange={this.changeHandler} className="Estimatedbudget" />
                             </div><br></br>
                             <div>
-                                <label for="referred">Referred By</label>
+                                <Label for="referred">Referred By</Label>
                                 <input type="text" name="ReferredBy" value={ReferredBy} onChange={this.changeHandler} id="referred" className="Referredby" />
                             </div><br></br>
                         </Col>
                         <Col sm={{ size: 'auto', offset: 3 }} >
-                            <label for="Assigne" className="assignee" >Assignee*</label><br></br>
+                            <Label for="Assigne" className="assignee" >Assignee*</Label><br></br>
                             <input type="radio" className="assignee" />
-                            <label for="Assignee" >Assign To</label>
+                            <Label for="Assignee" >Assign To</Label>
                             <select name="AssignTo" value={AssignTo} onChange={this.changeHandler} id="Assignee" className="Assignto">
                                 <option >choose any one</option>
                                 <option select>abc</option>
@@ -256,53 +256,53 @@ class Newlead extends Component {
                     <div className="prospectus"><br></br>
                         <Row>
                             <Col sm={{ size: 'auto', offset: 1 }}>
-                                <label for="fullname">Full Name</label>
+                                <Label for="fullname">Full Name</Label>
                                 <input type="text" id="fullname" name="FullName" value={FullName} onChange={this.changeHandler} className="Fullname" />
                             </Col>
                             <Col sm={{ size: 'auto', offset: 1 }}>
-                                <label for="streetaddress">Street Address</label>
+                                <Label for="streetaddress">Street Address</Label>
                                 <input type="text" id="streetaddress" name="StreetAddress" value={StreetAddress} onChange={this.changeHandler} className="Sreetaddress" />
                             </Col>
                         </Row><br></br>
                         <Row>
                             <Col sm={{ size: 'auto', offset: 1 }}>
-                                <label for="email" >Email</label>
+                                <Label for="email" >Email</Label>
                                 <input type="text" name="Email" value={Email} onChange={this.changeHandler} id="email" className="Email" />
                                 <button className="add-icon" id="email">+</button>
                                 {/* <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div> */}
                             </Col>
                             <Col className="City" >
-                                <label for="city">City</label>
+                                <Label for="city">City</Label>
                                 <input type="text" name="City" value={City} onChange={this.changeHandler} id="city" className="City" />
                             </Col>
                         </Row><br></br>
                         <Row>
                             <Col sm={{ size: 'auto', offset: 1 }}>
-                                <label for="company">Company</label>
+                                <Label for="company">Company</Label>
                                 <input type="text" name="Company" value={Company} onChange={this.changeHandler} id="company" className="Company" />
                             </Col>
                             <Col sm={{ size: 'auto', offset: 1 }}>
-                                <label for="state">State</label>
+                                <Label for="state">State</Label>
                                 <input type="text" name="State" value={State} onChange={this.changeHandler} id="state" className="State" />
                             </Col>
                         </Row><br></br>
                         <Row>
                             <Col sm={{ size: 'auto', offset: 1 }}>
-                                <label for="designation">Designation</label>
+                                <Label for="designation">Designation</Label>
                                 <input type="text" name="Designation" value={Designation} onChange={this.changeHandler} id="designation" className="Designation" />
                             </Col>
                             <Col sm={{ size: 'auto', offset: 1 }}>
-                                <label for="country">Country</label>
+                                <Label for="country">Country</Label>
                                 <input type="text" name="Country" value={Country} onChange={this.changeHandler} id="country" className="Country" />
                             </Col>
                         </Row><br></br>
                         <Row>
                             <Col sm={{ size: 'auto', offset: 1 }}>
-                                <label for="skypeid">Skype ID</label>
+                                <Label for="skypeid">Skype ID</Label>
                                 <input type="text" name="SkypeID" value={SkypeID} onChange={this.changeHandler} id="skypeid" className="Skypeid" />
                             </Col>
                             <Col sm={{ size: 'auto', offset: 1 }}>
-                                <label for="phone">Phone</label>
+                                <Label for="phone">Phone</Label>
                                 <input type="text" name="Phone" value={Phone} onChange={this.changeHandler} id="phone" className="mobileno" />
                                 <button className="add-icon" id="phone">+</button>
                                 {/* <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div> */}
@@ -327,9 +327,9 @@ class Newlead extends Component {
                         </Col>
                     </Row>
                 </form>
+                {/* <script type="text/javascript" charSet="ytf-8" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> */}
+                {/* <script type="text/javascript" charSet="ytf-8" src="static:{js/main.js}"></script> */}
             </div>
-
-
         )
     }
 }

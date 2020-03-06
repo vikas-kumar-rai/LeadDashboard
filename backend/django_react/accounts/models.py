@@ -15,7 +15,7 @@ class accounts(models.Model):
     AssignTo = models.CharField(max_length=300, null=True, blank=True)
     EstimatedBudget = models.IntegerField(null=True, blank=True)
     ReferredBy = models.CharField(max_length=300, null=True, blank=True)
-    Attachment = models.ImageField(blank=True, null=True, upload_to = 'media/')
+    Attachment = models.FileField(blank=True, null=True, upload_to = 'media/')
     FullName = models.CharField(max_length=300, null=True, blank=True)
     Email = models.EmailField(null=True, blank=True)
     Company = models.CharField(max_length=300, null=True, blank=True)
@@ -30,4 +30,3 @@ class accounts(models.Model):
 
     def __str__(self):
         return self.title
-

@@ -18,9 +18,6 @@ class AddDepModal extends Component {
       toggle11: false,
       logged:false
     }
-    this.states = {
-      Status: "Accepted",
-    }
     this.toggle3 = this.toggle3.bind(this);
     this.toggle5 = this.toggle5.bind(this);
     this.toggle10 = this.toggle10.bind(this);
@@ -34,8 +31,9 @@ class AddDepModal extends Component {
       toggle4: !this.state.toggle4
     })
     console.log("toggle5: ", this.props.id, this.states)
+    window.location.reload(false);
     e.preventDefault()
-    axios.put('http://127.0.0.1:8000/accounts/' + this.props.id1 + '/', this.states)
+    axios.put('http://127.0.0.1:8000/accounts/' + this.props.id1 + '/', {Status:"Accepted"})
       .then(response => {
         console.log(response);
       })
@@ -47,6 +45,15 @@ class AddDepModal extends Component {
     this.setState({ toggle9: !this.state.toggle9,
       logged:!this.state.logged
      })         
+     window.location.reload(false);
+     e.preventDefault()
+         axios.put('http://127.0.0.1:8000/accounts/'+ this.props.id1+'/', {Status:"Pitched"})
+   .then(response => {
+     console.log(response);
+   })
+   .catch(error => {
+     console.log(error);
+   })
   }
   toggle12(e) {
     this.setState({ toggle11: !this.state.toggle11 })

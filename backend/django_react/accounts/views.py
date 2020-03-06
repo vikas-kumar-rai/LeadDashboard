@@ -12,9 +12,9 @@ from rest_framework.parsers import JSONParser
 from django.http import HttpResponse
 from rest_framework.parsers import MultiPartParser, FormParser,FileUploadParser
 
-class accountsListCreate(generics.ListCreateAPIView):
-    queryset = accounts.objects.all()
-    serializer_class = accountsSerializer
+# class accountsListCreate(generics.ListCreateAPIView):
+#     queryset = accounts.objects.all()
+#     serializer_class = accountsSerializer
 
 
 
@@ -22,28 +22,28 @@ class accountsListCreate(generics.ListCreateAPIView):
 
 
 
-# class accountsListCreate(APIView):
+class accountsListCreate(APIView):
 
-#     def get(self, request, format=None):
-#         account = accounts.objects.all()
-#         serializer = accountsSerializer(account, many=True)
-#         return Response(serializer.data)
+    def get(self, request, format=None):
+        account = accounts.objects.all()
+        serializer = accountsSerializer(account, many=True)
+        return Response(serializer.data)
 
-#     def post(self, request, format=None):
-#         print("data is going to post")
-#         print("data is going to post")
-#         print(request.data['Attachment'])
-#         request.data['Attachment']=None
+    def post(self, request, format=None):
+        print("data is going to post")
+        print("data is going to post")
+        print(request.data['Attachment'])
+        request.data['Attachment']=None
 
-#         serializer = accountsSerializer(data=request.data)
-#         print("hellooo",serializer)
-#         print("serializer")
-#         if serializer.is_valid():
-#             print("serializer is  valid")
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         print("error at:",serializer.errors)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer = accountsSerializer(data=request.data)
+        print("hellooo",serializer)
+        print("serializer")
+        if serializer.is_valid():
+            print("serializer is  valid")
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        print("error at:",serializer.errors)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     #
     # def put(self, request, format=None):
     #     print("I am hiting here")
