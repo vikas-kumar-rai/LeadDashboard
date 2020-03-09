@@ -48,13 +48,12 @@ class Newlead extends Component {
                 this.submituserRegistrationForm = this.submituserRegistrationForm.bind(this);
           
         */
-       
-   
-    }      
+
+
+    }
     changeHandler = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
-
     submitHandler = e => {
         e.preventDefault()
         console.log(this.state)
@@ -172,7 +171,7 @@ class Newlead extends Component {
                     <Row>
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <Label for="myid">Title*</Label><br></br>
-                            <input type="text" name="Title" value={Title} onChange={this.changeHandler} className="title"  /><br></br>
+                            <input type="text" name="Title" value={Title} onChange={this.changeHandler} className="title" /><br></br>
                             {/* <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div> */}
                         </Col><br></br>
                         <Col sm={{ size: 'auto', offset: 4 }} className="Source">
@@ -251,7 +250,7 @@ class Newlead extends Component {
                         </Col>
                         <Col className="Existing">
                             Existing?
-                    </Col>
+                        </Col>
                     </Row>
                     <div className="prospectus"><br></br>
                         <Row>
@@ -322,7 +321,7 @@ class Newlead extends Component {
                         </Col>
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <div >
-                                <button type="reset" name="cancelCourse" className="Cancel" className="btn btn-danger" value="cancel" onClick={this.cancelCourse}>Cancel</button>
+                                <button type="reset" name="cancel" className="Cancel" className="btn btn-danger" value="cancel" >Cancel</button>
                             </div>
                         </Col>
                     </Row>

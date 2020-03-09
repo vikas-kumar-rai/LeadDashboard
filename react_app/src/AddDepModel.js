@@ -16,7 +16,7 @@ class AddDepModal extends Component {
       toggle4: false,
       toggle9: false,
       toggle11: false,
-      logged:false
+      logged: false
     }
     this.toggle3 = this.toggle3.bind(this);
     this.toggle5 = this.toggle5.bind(this);
@@ -33,7 +33,7 @@ class AddDepModal extends Component {
     console.log("toggle5: ", this.props.id, this.states)
     window.location.reload(false);
     e.preventDefault()
-    axios.put('http://127.0.0.1:8000/accounts/' + this.props.id1 + '/', {Status:"Accepted"})
+    axios.put('http://127.0.0.1:8000/accounts/' + this.props.id1 + '/', { Status: "Accepted" })
       .then(response => {
         console.log(response);
       })
@@ -42,18 +42,19 @@ class AddDepModal extends Component {
       })
   }
   toggle10(e) {
-    this.setState({ toggle9: !this.state.toggle9,
-      logged:!this.state.logged
-     })         
-     window.location.reload(false);
-     e.preventDefault()
-         axios.put('http://127.0.0.1:8000/accounts/'+ this.props.id1+'/', {Status:"Pitched"})
-   .then(response => {
-     console.log(response);
-   })
-   .catch(error => {
-     console.log(error);
-   })
+    this.setState({
+      toggle9: !this.state.toggle9,
+      logged: !this.state.logged
+    })
+    window.location.reload(false);
+    e.preventDefault()
+    axios.put('http://127.0.0.1:8000/accounts/' + this.props.id1 + '/', { Status: "Pitched" })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
   toggle12(e) {
     this.setState({ toggle11: !this.state.toggle11 })
@@ -87,9 +88,9 @@ class AddDepModal extends Component {
                         <Comments />
                         <Button variant="primary" onClick={this.toggle12}>ADD</Button>
                         <Pitched show={this.state.toggle11} onHide={PitchedModalClose} />
-                        <Button variant="primary" onClick={this.toggle10}>{this.state.logged ?("Response generated"):("Pitched")} </Button>
+                        <Button variant="primary" onClick={this.toggle10}>{this.state.logged ? ("Response generated") : ("Pitched")} </Button>
                       </div>
-                      ) 
+                    )
                 }
               </div>
             ) : (
