@@ -171,7 +171,7 @@ class Newlead extends Component {
                     <Row>
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <Label for="myid">Title*</Label><br></br>
-                            <input type="text" name="Title" value={Title} onChange={this.changeHandler} className="title" /><br></br>
+                            <input type="text" name="Title" value={Title} onChange={this.changeHandler} className="title" autoFocus/><br></br>
                             {/* <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div> */}
                         </Col><br></br>
                         <Col sm={{ size: 'auto', offset: 4 }} className="Source">
