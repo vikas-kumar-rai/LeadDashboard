@@ -9,4 +9,3 @@ urlpatterns = [
     url(r'accounts/(?P<pk>\d+)/$', views.accountsListPut.as_view({'get': 'retrieve', 'put': 'update'}),name='edit_accounts'),
     # path('accounts/(?P<pk>\d+)/$', views.accountsListCreate.as_view() ),
 ]
-#this is for check

@@ -10,6 +10,7 @@ import './Newlead.css';
 // import { Form,Button, FormGroup, FormControl,} from "react-bootstrap";
 import { Row, Col, Label } from 'reactstrap';
 
+const url1='http://127..0.1:8000/';
 class Newlead extends Component {
     constructor(props) {
         super(props)
@@ -49,21 +50,47 @@ class Newlead extends Component {
           
         */
 
-
+        this.handleSubmit=this.handleSubmit.bind(this);
     }
+     
     changeHandler = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
     submitHandler = e => {
         e.preventDefault()
         console.log(this.state)
-        axios.post('http://127.0.0.1:8000/', this.state)
+        axios.post(url1 , this.state)
             .then(response => {
                 console.log(response)
             })
             .catch(error => {
                 console.log(error)
             })
+    }
+    handleSubmit(){
+        this.setState({
+            Title: '',
+            Description: '',
+            Source: '',
+            Url: '',
+            Domain: '',
+            Tags: '',
+            Technology: '',
+            AssignTo: '',
+            EstimatedBudget: '',
+            ReferredBy: '',
+            //Attachment: '',
+            FullName: '',
+            Email: '',
+            Company: '',
+            Designation: '',
+            SkypeID: '',
+            StreetAddress: '',
+            City: '',
+            State: '',
+            Country: '',
+            Phone: '',
+        })
     }
     //      handleChange(e) {
     //        let fields = this.state.fields;
@@ -321,7 +348,7 @@ class Newlead extends Component {
                         </Col>
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <div >
-                                <button type="reset" name="cancel" className="Cancel" className="btn btn-danger" value="cancel" >Cancel</button>
+                                <button type="reset" name="cancel" className="Cancel" onClick={this.handleSubmit} className="btn btn-danger" value="cancel" >Cancel</button>
                             </div>
                         </Col>
                     </Row>

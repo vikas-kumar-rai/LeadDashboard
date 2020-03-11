@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import { Row, Col} from 'reactstrap';
+
 import Reject from './Reject';
 import LMSSystem from './LMSSystem';
 import LMSSystem1 from './LMSSystem1';
@@ -113,9 +115,15 @@ class AddDepModal extends Component {
                                 ) : (
                                     <div>
                                       <Comments />
-                                      <Button variant="primary" onClick={this.toggle12}>ADD</Button>
-                                      <Pitched show={this.state.toggle11} onHide={PitchedModalClose} />
-                                      <Button variant="primary" onClick={this.toggle10}>Pitched </Button>
+                                      <Pitched show={this.state.toggle11} onHide={PitchedModalClose}/>
+                                      <Row>
+                                        <Col>
+                                          <Button variant="primary" onClick={this.toggle12}>ADD</Button>
+                                       </Col>
+                                       <Col className="pit">
+                                          <Button variant="primary" onClick={this.toggle10}>Pitched </Button>
+                                        </Col>
+                                      </Row>
                                     </div>)
                               }
                             </div>) :

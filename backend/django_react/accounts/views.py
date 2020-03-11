@@ -36,10 +36,10 @@ class accountsListCreate(APIView):
         request.data['Attachment']=None
 
         serializer = accountsSerializer(data=request.data)
-        print("hellooo",serializer)
-        print("serializer")
+        # print("hellooo",serializer)
+        # print("serializer")
         if serializer.is_valid():
-            print("serializer is  valid")
+            # print("serializer is  valid")
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         print("error at:",serializer.errors)
@@ -101,17 +101,9 @@ class accountsListCreate(APIView):
 #         print("posting data")
 #         accounts.objects.create(request.data)
 #         return HttpResponse({'message': 'Book created'}, status=200)
-
-
-
-
-
-
-
 class accountsListPut(viewsets.ModelViewSet):
     """
     update user budget
     """
-
     queryset = accounts.objects.all()
     serializer_class = accountsSerializer

@@ -31,5 +31,4 @@ export default Pitched1;
             <button type="submit" className="sub">Submit</button>
         </Col>
     </Row>
-
 </div>

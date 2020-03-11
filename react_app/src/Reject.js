@@ -26,8 +26,6 @@ class Reject extends React.Component {
           <Button variant="primary" onClick={this.props.onHide}>Submit</Button>
         </Modal.Footer>
       </Modal>
-
-
     )
   }
 }
