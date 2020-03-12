@@ -10,7 +10,7 @@ import './Newlead.css';
 // import { Form,Button, FormGroup, FormControl,} from "react-bootstrap";
 import { Row, Col, Label } from 'reactstrap';
 
-const url1='http://127..0.1:8000/';
+const url1='http://127.0.0.1:8000/';
 class Newlead extends Component {
     constructor(props) {
         super(props)
@@ -51,15 +51,23 @@ class Newlead extends Component {
         */
 
         this.handleSubmit=this.handleSubmit.bind(this);
+        this.refreshPage=this.refreshPage.bind(this);
+        this.submitted=this.submitted.bind(this);
     }
-     
+    submitted(){
+        alert("Form submitted ");
+        window.location.reload(false);
+    }
+    refreshPage() {
+        window.location.reload(false);
+    }
     changeHandler = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
     submitHandler = e => {
         e.preventDefault()
         console.log(this.state)
-        axios.post(url1 , this.state)
+        axios.post(url1 , this.state) 
             .then(response => {
                 console.log(response)
             })
@@ -338,12 +346,12 @@ class Newlead extends Component {
                     <Row>
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <div >
-                                <button type="submit" value="submit" className="btn btn-primary">Submit and New</button>
+                                <button type="submit" onClick={this.refreshPage} value="submit" className="btn btn-primary" >Submit and New</button>
                             </div>
                         </Col>
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <   div >
-                                <button type="submit" value="submit" className="btn btn-primary">Submit</button>
+                                <button type="submit" onClick={this.submitted} value="submit" className="btn btn-primary" >Submit</button>
                             </div>
                         </Col>
                         <Col sm={{ size: 'auto', offset: 1 }}>
