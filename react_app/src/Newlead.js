@@ -8,7 +8,7 @@ import './Newlead.css';
 // import main from './main';
 // import 'jquery/dist/jquery.min.js'
 // import { Form,Button, FormGroup, FormControl,} from "react-bootstrap";
-import { Row, Col, Label } from 'reactstrap';
+import { Row, Col, Label,Button} from 'reactstrap';
 
 const url1='http://127.0.0.1:8000/';
 class Newlead extends Component {
@@ -20,28 +20,30 @@ class Newlead extends Component {
         //
         //        }
         this.state = {
-            Title: '',
-            Description: '',
-            Source: '',
-            Url: '',
-            Domain: '',
-            Tags: '',
-            Technology: '',
-            AssignTo: '',
-            EstimatedBudget: '',
-            ReferredBy: '',
-            Attachment: '',
-            FullName: '',
-            Email: '',
-            Company: '',
-            Designation: '',
-            SkypeID: '',
-            StreetAddress: '',
-            City: '',
-            State: '',
-            Country: '',
-            Phone: '',
-            Status: 'New'
+            title: '',
+            description: '',
+            source: '',
+            url: '',
+            domain: '',
+            tags: '',
+            technology: '',
+            assign_to: '',
+            estimated_budget: '',
+            referred_by: '',
+            attachment: '',
+            full_name: '',
+            email: '',
+            company: '',
+            designation: '',
+            skypeid: '',
+            streetaddress: '',
+            city: '',
+            state: '',
+            country: '',
+            phone: '',
+            status: 'New',
+            values: [],
+            valuesphone: []
         }
 
         /*
@@ -54,6 +56,57 @@ class Newlead extends Component {
         this.refreshPage=this.refreshPage.bind(this);
         this.submitted=this.submitted.bind(this);
     }
+    createUI(){
+     return this.state.values.map((el, i) => 
+         <div key={i}>
+            <input type="text" value={el||''} onChange={this.handleChange.bind(this, i)} className="emailplus"/>
+            <input type='button' value='-' onClick={this.removeClick.bind(this, i)} className="add-icon"/>
+         </div>          
+     )
+    }
+
+    createUIPhone(){
+     return this.state.valuesphone.map((q, r) => 
+         <div key={r}>
+            <input type="text" value={q||''} onChange={this.handleChangePhone.bind(this, r)} className="phoneplus"/>
+            <input type='button' value='-' onClick={this.removeClickPhone.bind(this, r)} className="add-icon"/>
+         </div>          
+     )
+    }
+
+
+    handleChangePhone(r, event) {
+     let valuesphone = [...this.state.valuesphone];
+     valuesphone[r] = event.target.value;
+     this.setState({ valuesphone });
+    }
+
+    handleChange(i, event) {
+     let values = [...this.state.values];
+     values[i] = event.target.value;
+     this.setState({ values });
+    }
+  
+    addClick(){
+        this.setState(prevState => ({ values: [...prevState.values, '']}))
+    }
+    addClickPhone(){
+        this.setState(prevState => ({ valuesphone: [...prevState.valuesphone, '']}))
+    }
+  
+    removeClick(i){
+     let values = [...this.state.values];
+     values.splice(i,1);
+     this.setState({ values });
+     }
+
+
+    removeClickPhone(r){
+     let valuesphone = [...this.state.valuesphone];
+     valuesphone.splice(r,1);
+     this.setState({ valuesphone });
+     }
+
     submitted(){
         alert("Form submitted ");
         window.location.reload(false);
@@ -74,30 +127,34 @@ class Newlead extends Component {
             .catch(error => {
                 console.log(error)
             })
-    }
+        // alert('A name was submitted: ' + this.state.values.join(', '));
+        e.preventDefault();
+    }    
     handleSubmit(){
         this.setState({
-            Title: '',
-            Description: '',
-            Source: '',
-            Url: '',
-            Domain: '',
-            Tags: '',
-            Technology: '',
-            AssignTo: '',
-            EstimatedBudget: '',
-            ReferredBy: '',
-            //Attachment: '',
-            FullName: '',
-            Email: '',
-            Company: '',
-            Designation: '',
-            SkypeID: '',
-            StreetAddress: '',
-            City: '',
-            State: '',
-            Country: '',
-            Phone: '',
+            title: '',
+            description: '',
+            source: '',
+            url: '',
+            domain: '',
+            tags: '',
+            technology: '',
+            assign_to: '',
+            estimated_budget: '',
+            referred_by: '',
+            //attachment: '',
+            full_name: '',
+            email: '',
+            company: '',
+            designation: '',
+            skypeid: '',
+            streetaddress: '',
+            city: '',
+            state: '',
+            country: '',
+            phone: '',
+            values: [],
+            valuesphone: []
         })
     }
     //      handleChange(e) {
@@ -114,9 +171,9 @@ class Newlead extends Component {
     //        if (this.validateForm()) {
     //            let fields = {};
     //            fields["title"] = "";
-    //            fields["Email"] = "";
+    //            fields["email"] = "";
     //            fields["mobileno"] = "";
-    //            fields["Source"] = "";
+    //            fields["source"] = "";
     //            // fields["password"] = "";
     //            this.setState({fields:fields});
     //            alert("Form submitted");
@@ -142,17 +199,17 @@ class Newlead extends Component {
     //          }
     //        }
     //
-    //        if (!fields["Email"]) {
+    //        if (!fields["email"]) {
     //          formIsValid = false;
-    //          errors["Email"] = "*Please enter your email-ID.";
+    //          errors["email"] = "*Please enter your email-ID.";
     //        }
     //
-    //        if (typeof fields["Email"] !== "undefined") {
+    //        if (typeof fields["email"] !== "undefined") {
     //          //regular expression for email validation
     //          var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-    //          if (!pattern.test(fields["Email"])) {
+    //          if (!pattern.test(fields["email"])) {
     //            formIsValid = false;
-    //            errors["Email"] = "*Please enter valid email-ID.";
+    //            errors["email"] = "*Please enter valid email-ID.";
     //          }
     //        }
     //
@@ -167,9 +224,9 @@ class Newlead extends Component {
     //            errors["mobileno"] = "*Please enter valid mobile no.";
     //          }
     //        }
-    //        if (!fields["Source"]) {
+    //        if (!fields["source"]) {
     //            formIsValid = false;
-    //            errors["Source"] = "*Please select source";
+    //            errors["source"] = "*Please select source";
     //          }
 
     // if (!fields["password"]) {
@@ -192,7 +249,7 @@ class Newlead extends Component {
     //
     //      }
     render() {
-        const { Title, Description, Source, Url, Domain, Tags, Technology, AssignTo, EstimatedBudget, ReferredBy, Attachment, FullName, Email, Company, Designation, SkypeID, StreetAddress, City, State, Country, Phone } = this.state
+        const { title, description, source, url, domain, tags, technology, assign_to, estimated_budget, referred_by, attachment, full_name, email, company, designation, skypeid, streetaddress, city, state, country, phone } = this.state
         return (
             <div>
                 <Row>
@@ -202,16 +259,16 @@ class Newlead extends Component {
                         </div>
                     </Col>
                 </Row>
-                <form action="" method="post" encType="multipart/form-data" onSubmit={this.submitHandler} id="create-course-form">
+                <form action="" method="post" name="form" encType="multipart/form-data" onSubmit={this.submitHandler} id="create-course-form" required={this.required}>
                     <Row>
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <Label for="myid">Title*</Label><br></br>
-                            <input type="text" name="Title" value={Title} onChange={this.changeHandler} className="title" autoFocus/><br></br>
+                            <input type="text" name="title" value={title} onChange={this.changeHandler} className="title" autoFocus/><br></br>
                             {/* <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div> */}
                         </Col><br></br>
-                        <Col sm={{ size: 'auto', offset: 4 }} className="Source">
-                            <Label for="source" className="Source">Source*</Label><br></br>
-                            <select name="Source" value={Source} onChange={this.changeHandler} id="Source" className="Source">
+                        <Col sm={{ size: 'auto', offset: 4 }} className="source">
+                            <Label for="source" className="source">Source*</Label><br></br>
+                            <select name="source" value={source} onChange={this.changeHandler} id="source" className="source">
                                 <option>choose any one</option>
                                 <option select>java</option>
                                 <option select>php</option>
@@ -222,32 +279,32 @@ class Newlead extends Component {
                     <Row>
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <lable>Description</lable><br></br>
-                            <textarea type="text" name="Description" value={Description} onChange={this.changeHandler} className="Description" /><br></br>
+                            <textarea type="text" name="description" value={description} onChange={this.changeHandler} className="description" /><br></br>
                         </Col>
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <Label for="url">URL</Label><br></br>
-                            <input type="text" id="url" name="Url" value={Url} onChange={this.changeHandler} className="URL" /><br></br>
+                            <input type="text" id="url" name="url" value={url} onChange={this.changeHandler} className="URL" /><br></br>
                             <Label for="domain">Domain</Label><br></br>
-                            <select id="domain" name="Domain" value={Domain} onChange={this.changeHandler} className="Domain">
+                            <select id="domain" name="domain" value={domain} onChange={this.changeHandler} className="domain">
                                 <option >choose any one</option>
                                 <option select>yahoo</option>
                                 <option select>google</option>
                             </select><br></br>
-                            <Label for="keywords">Keywords/Tags</Label><br></br>
-                            <input type="text" id="keywords" name="Tags" value={Tags} onChange={this.changeHandler} className="Keywords" /><br></br>
+                            <Label for="keywords">Keywords/tags</Label><br></br>
+                            <input type="text" id="keywords" name="tags" value={tags} onChange={this.changeHandler} className="Keywords" /><br></br>
                         </Col>
                     </Row><br></br>
                     <Row>
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <div>
                                 <Label for="attechment">Attachment</Label>
-                                <input type="file" id="attechment" name="Attachment" label='File' value={Attachment} onChange={this.changeHandler} className="Attechment" />
+                                <input type="file" id="attechment" name="attachment" label='File' value={attachment} onChange={this.changeHandler} className="attachment" />
                             </div><br></br>
                         </Col>
                         <Col sm={{ size: 'auto', offset: 4 }}>
-                            <div className="Technology">
-                                <Label for="technology" className="Technology">Technology</Label><br></br>
-                                <select id="technology" name="Technology" value={Technology} onChange={this.changeHandler} className="Technology">
+                            <div className="technology">
+                                <Label for="technology" className="technology">Technology</Label><br></br>
+                                <select id="technology" name="technology" value={technology} onChange={this.changeHandler} className="technology">
                                     <option >choose any one</option>
                                     <option select>python</option>
                                     <option select>nodejs</option>
@@ -259,18 +316,18 @@ class Newlead extends Component {
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <div>
                                 <Label for="estimated">Estimated Budget ($)</Label>
-                                <input type="text" id="estimated" name="EstimatedBudget" value={EstimatedBudget} onChange={this.changeHandler} className="Estimatedbudget" />
+                                <input type="text" id="estimated" name="estimated_budget" value={estimated_budget} onChange={this.changeHandler} className="Estimatedbudget" />
                             </div><br></br>
                             <div>
                                 <Label for="referred">Referred By</Label>
-                                <input type="text" name="ReferredBy" value={ReferredBy} onChange={this.changeHandler} id="referred" className="Referredby" />
+                                <input type="text" name="referred_by" value={referred_by} onChange={this.changeHandler} id="referred" className="referred_by" />
                             </div><br></br>
                         </Col>
                         <Col sm={{ size: 'auto', offset: 3 }} >
                             <Label for="Assigne" className="assignee" >Assignee*</Label><br></br>
                             <input type="radio" className="assignee" />
                             <Label for="Assignee" >Assign To</Label>
-                            <select name="AssignTo" value={AssignTo} onChange={this.changeHandler} id="Assignee" className="Assignto">
+                            <select name="assign_to" value={assign_to} onChange={this.changeHandler} id="Assignee" className="assign_to">
                                 <option >choose any one</option>
                                 <option select>abc</option>
                                 <option select>def</option>
@@ -290,73 +347,75 @@ class Newlead extends Component {
                     <div className="prospectus"><br></br>
                         <Row>
                             <Col sm={{ size: 'auto', offset: 1 }}>
-                                <Label for="fullname">Full Name</Label>
-                                <input type="text" id="fullname" name="FullName" value={FullName} onChange={this.changeHandler} className="Fullname" />
+                                <Label for="full_name">Full Name</Label>
+                                <input type="text" id="full_name" name="full_name" value={full_name} onChange={this.changeHandler} className="full_name" />
                             </Col>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="streetaddress">Street Address</Label>
-                                <input type="text" id="streetaddress" name="StreetAddress" value={StreetAddress} onChange={this.changeHandler} className="Sreetaddress" />
+                                <input type="text" id="streetaddress" name="streetaddress" value={streetaddress} onChange={this.changeHandler} className="Sreetaddress" />
                             </Col>
                         </Row><br></br>
                         <Row>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="email" >Email</Label>
-                                <input type="text" name="Email" value={Email} onChange={this.changeHandler} id="email" className="Email" />
-                                <button className="add-icon" id="email">+</button>
+                                <input type="text" name="email" value={email} onChange={this.changeHandler} id="email" className="email" />
+                                <button className="add-icon" value="test" id="email" onClick={this.addClick.bind(this)}>+</button>
+                                {this.createUI()}
                                 {/* <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div> */}
                             </Col>
-                            <Col className="City" >
-                                <Label for="city">City</Label>
-                                <input type="text" name="City" value={City} onChange={this.changeHandler} id="city" className="City" />
+                            <Col >
+                                <Label for="city" className="city">City</Label>
+                                <input type="text" name="city" value={city} onChange={this.changeHandler} id="city" className="city1" />
                             </Col>
                         </Row><br></br>
                         <Row>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="company">Company</Label>
-                                <input type="text" name="Company" value={Company} onChange={this.changeHandler} id="company" className="Company" />
+                                <input type="text" name="company" value={company} onChange={this.changeHandler} id="company" className="company" />
                             </Col>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="state">State</Label>
-                                <input type="text" name="State" value={State} onChange={this.changeHandler} id="state" className="State" />
+                                <input type="text" name="state" value={state} onChange={this.changeHandler} id="state" className="state" />
                             </Col>
                         </Row><br></br>
                         <Row>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="designation">Designation</Label>
-                                <input type="text" name="Designation" value={Designation} onChange={this.changeHandler} id="designation" className="Designation" />
+                                <input type="text" name="designation" value={designation} onChange={this.changeHandler} id="designation" className="designation" />
                             </Col>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="country">Country</Label>
-                                <input type="text" name="Country" value={Country} onChange={this.changeHandler} id="country" className="Country" />
+                                <input type="text" name="country" value={country} onChange={this.changeHandler} id="country" className="country" />
                             </Col>
                         </Row><br></br>
                         <Row>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="skypeid">Skype ID</Label>
-                                <input type="text" name="SkypeID" value={SkypeID} onChange={this.changeHandler} id="skypeid" className="Skypeid" />
+                                <input type="text" name="skypeid" value={skypeid} onChange={this.changeHandler} id="skypeid" className="Skypeid" />
                             </Col>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="phone">Phone</Label>
-                                <input type="text" name="Phone" value={Phone} onChange={this.changeHandler} id="phone" className="mobileno" />
-                                <button className="add-icon" id="phone">+</button>
+                                <input type="text" name="phone" value={phone} onChange={this.changeHandler} id="phone" className="mobileno" />
+                                <button className="add-icon" id="phone" onClick={this.addClickPhone.bind(this)}>+</button>
+                                {this.createUIPhone()}
                                 {/* <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div> */}
                             </Col>
                         </Row>
                     </div><br></br>
                     <Row>
                         <Col sm={{ size: 'auto', offset: 1 }}>
-                            <div >
+                            <div>
                                 <button type="submit" onClick={this.refreshPage} value="submit" className="btn btn-primary" >Submit and New</button>
                             </div>
                         </Col>
-                        <Col sm={{ size: 'auto', offset: 1 }}>
-                            <   div >
+                        <Col sm={{ size: 'auto', offset: 2 }}>
+                            <div>
                                 <button type="submit" onClick={this.submitted} value="submit" className="btn btn-primary" >Submit</button>
                             </div>
                         </Col>
-                        <Col sm={{ size: 'auto', offset: 1 }}>
-                            <div >
-                                <button type="reset" name="cancel" className="Cancel" onClick={this.handleSubmit} className="btn btn-danger" value="cancel" >Cancel</button>
+                        <Col sm={{ size: 'auto', offset: 2 }}>
+                            <div>
+                                <Button type="reset" name="cancel" className="btn btn-danger" onClick={this.handleSubmit} value="cancel" >Cancel</Button>
                             </div>
                         </Col>
                     </Row>

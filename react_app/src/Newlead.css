@@ -1,4 +1,4 @@
-.Description{
+.description{
     width: 400px;
     height: 165px;
 }
@@ -11,16 +11,16 @@
     width: 250px;
     margin-left: 5px;
 }
-.Referredby{
+.referred_by{
     position: absolute;
     width: 250px;
     margin-left: 70px;
 }
-.Attechment{
+.attachment{
     position: absolute;
     margin-left: 75px;
 }
-.Source{
+.source{
     position: absolute;
     width: 300px;
     margin-left: 35px;
@@ -29,13 +29,13 @@
 .URL{
 width: 300px;
 }
-.Domain{
+.domain{
     width: 300px;
 }
 .Keywords{
     width: 300px;
 }
-.Technology{
+.technology{
     position: absolute;
     width: 300px;
     margin-left: -5px;
@@ -59,10 +59,10 @@ width: 300px;
 .prospectus{
     border:1px solid #000;
     width: 865px;
-    height: 350px;
+    height: 390px;
     margin-left: 110px;
 }
-.Fullname{
+.full_name{
     margin-left: 30px;
 }
 .Sreetaddress{
@@ -76,22 +76,25 @@ border:1px solid black;
 margin-left: 10px;
 padding: 2px;
 }
-.Email{
+.email{
     margin-left: 62px;
 }
-.City{
-    margin-left: 77px;
+.city1{
+    margin-left: 117px;
 }
-.Company{
+.city{
+    margin-left: 35px;
+}
+.company{
     margin-left: 33px;
 }
-.State{
+.state{
     margin-left: 110px;
 }
-.Designation{
+.designation{
     margin-left: 16px;
 }
-.Country{
+.country{
     margin-left: 94px;
 }
 .Skypeid{
@@ -99,6 +102,13 @@ padding: 2px;
 }
 .mobileno{
     margin-left: 105px;
+    width: 170px;
+}
+.emailplus{
+    margin-left: 102px;
+}
+.phoneplus{
+    margin-left: 151px;
     width: 170px;
 }
 /* .submitandnew{

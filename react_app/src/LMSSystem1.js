@@ -38,7 +38,7 @@ class LMSSystem1 extends Component {
                 <Modal.Body>
                     <div>   {
                         this.state.data.map((dynamicData, key) => {
-                            if (dynamicData.Title === this.props.value3) {
+                            if (dynamicData.title === this.props.value3) {
                                 return (
                                     <div className="lms1">
                                         <h3>{this.props.value3}</h3>
@@ -47,7 +47,7 @@ class LMSSystem1 extends Component {
                                                 <p>Estimated Budget</p>
                                             </Col>
                                             <Col>
-                                                <p>{dynamicData.EstimatedBudget}</p>
+                                                <p>${dynamicData.estimated_budget}</p>
                                             </Col>
                                             <Col>
                                                 <p><a href="#" class="text-warning stretched-link">Edit</a></p>
@@ -68,11 +68,9 @@ class LMSSystem1 extends Component {
                             }
                         })
                     }
+                    <Button onClick={this.props.onHide}>SUBMIT</Button>
                     </div>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button onClick={this.props.onHide}>SUBMIT</Button>
-                </Modal.Footer>
             </Modal>
         )
     }

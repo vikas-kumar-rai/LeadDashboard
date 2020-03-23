@@ -1,4 +1,6 @@
 from django.contrib import admin
-from .models import accounts
+from .models import Accounts, Comments,Reject
 
-admin.site.register(accounts)
+admin.site.register(Accounts)
+admin.site.register(Comments)
+admin.site.register(Reject)
