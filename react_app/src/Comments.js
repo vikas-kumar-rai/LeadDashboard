@@ -1,7 +1,7 @@
-import React from 'react';
+import React,{ useState } from 'react';
 //import Attachment from './Attachment';
 //import {Row,Col} from 'reactstrap';
-import { Modal,Row,Col,Button} from 'react-bootstrap';
+import { Button,Modal,ButtonToolbar,Row,Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './Comments.css';
 import './Comment.css';
@@ -19,7 +19,7 @@ class Comments extends React.Component{
         };
         this.toggle14=this.toggle14.bind(this);
       }
-      
+
         componentDidMount(){
                 fetch(url).
                 then((Response)=>
@@ -32,7 +32,7 @@ class Comments extends React.Component{
                 })
                 })
                 }
-      
+
       toggle14(e){
         this.setState({toggle13:!this.state.toggle13});
       }
@@ -47,7 +47,7 @@ class Comments extends React.Component{
                 {
                 this.state.data.map((dynamicData,key)=>
                 {
-                   if (dynamicData.accounts === this.props.id){
+                   if (dynamicData.accounts == this.props.id){
                 return(
                 <div>
                 <Row>
@@ -67,8 +67,8 @@ class Comments extends React.Component{
                     <Comment show={this.state.toggle13} onHide={CommentsModalClose} id={this.props.id}/>
                     </div>
                </fieldset>
-                
-                
+
+
             </div>
         )
     }
@@ -123,7 +123,7 @@ class Comment extends React.Component{
                 <textarea type='text' name='comment' value={comment} onChange={this.changeHandler} className="ne" placeholder="Write Comment....."/>
             </Row>
             <div>
-            <Button type="submit" varient='primary' className="submit" value="submit" onClick={this.props.onHide} >Submit</Button>
+            <button type="submit" className="submit" value="submit" onClick={this.props.onHide} >Submit</button>
             </div>
            </form>
       </Modal.Body>
