@@ -35,29 +35,32 @@ class Newlead extends Component {
             email: '',
             company: '',
             designation: '',
-            skypeid: '',
-            streetaddress: '',
+            skype_id: '',
+            street_address: '',
             city: '',
             state: '',
             country: '',
             phone: '',
             status: 'New',
-            values: [],
-            valuesphone: []
+            secondary_email1: '',
+            secondary_email2: [],
+            secondary_phone1: '',
+            secondary_phone2: [],
+
         }
 
-        /*
+ /*
                 this.handleChange = this.handleChange.bind(this);
                 this.submituserRegistrationForm = this.submituserRegistrationForm.bind(this);
           
         */
 
         this.handleSubmit=this.handleSubmit.bind(this);
-        this.refreshPage=this.refreshPage.bind(this);
-        this.submitted=this.submitted.bind(this);
+//        this.refreshPage=this.refreshPage.bind(this);
+//        this.submitted=this.submitted.bind(this);
     }
     createUI(){
-     return this.state.values.map((el, i) => 
+     return this.state.secondary_email2.map((el, i) =>
          <div key={i}>
             <input type="text" value={el||''} onChange={this.handleChange.bind(this, i)} className="emailplus"/>
             <input type='button' value='-' onClick={this.removeClick.bind(this, i)} className="add-icon"/>
@@ -66,7 +69,7 @@ class Newlead extends Component {
     }
 
     createUIPhone(){
-     return this.state.valuesphone.map((q, r) => 
+     return this.state.secondary_phone2.map((q, r) =>
          <div key={r}>
             <input type="text" value={q||''} onChange={this.handleChangePhone.bind(this, r)} className="phoneplus"/>
             <input type='button' value='-' onClick={this.removeClickPhone.bind(this, r)} className="add-icon"/>
@@ -76,49 +79,55 @@ class Newlead extends Component {
 
 
     handleChangePhone(r, event) {
-     let valuesphone = [...this.state.valuesphone];
-     valuesphone[r] = event.target.value;
-     this.setState({ valuesphone });
+     let secondary_phone2 = [...this.state.secondary_phone2];
+     secondary_phone2[r] = event.target.value;
+     this.setState({ secondary_phone2 });
     }
 
     handleChange(i, event) {
-     let values = [...this.state.values];
-     values[i] = event.target.value;
-     this.setState({ values });
+     let secondary_email2 = [...this.state.secondary_email2];
+     secondary_email2[i] = event.target.value;
+     this.setState({ secondary_email2 });
     }
   
     addClick(){
-        this.setState(prevState => ({ values: [...prevState.values, '']}))
+        this.setState(prevState => ({ secondary_email2: [...prevState.secondary_email2, '']}))
     }
     addClickPhone(){
-        this.setState(prevState => ({ valuesphone: [...prevState.valuesphone, '']}))
+        this.setState(prevState => ({ secondary_phone2: [...prevState.secondary_phone2, '']}))
     }
   
     removeClick(i){
-     let values = [...this.state.values];
-     values.splice(i,1);
-     this.setState({ values });
+     let secondary_email2 = [...this.state.secondary_email2];
+     secondary_email2.splice(i,1);
+     this.setState({ secondary_email2 });
      }
 
 
     removeClickPhone(r){
-     let valuesphone = [...this.state.valuesphone];
-     valuesphone.splice(r,1);
-     this.setState({ valuesphone });
+     let secondary_phone2 = [...this.state.secondary_phone2];
+     secondary_phone2.splice(r,1);
+     this.setState({ secondary_phone2 });
      }
 
-    submitted(){
-        alert("Form submitted ");
-        window.location.reload(false);
-    }
-    refreshPage() {
-        window.location.reload(false);
-    }
+//    submitted(){
+//        alert("Form submitted ");
+//        window.location.reload(false);
+//    }
+//    refreshPage() {
+//        window.location.reload(false);
+//    }
     changeHandler = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
+
+    fileChangedHandler = (e) => {
+    console.log(e.target.files[0])
+    this.setState({ attachment: e.target.files[0] });
+    };
+
     submitHandler = e => {
-        e.preventDefault()
+        e.preventDefault();
         console.log(this.state)
         axios.post(url1 , this.state) 
             .then(response => {
@@ -127,8 +136,8 @@ class Newlead extends Component {
             .catch(error => {
                 console.log(error)
             })
-        // alert('A name was submitted: ' + this.state.values.join(', '));
-        e.preventDefault();
+
+
     }    
     handleSubmit(){
         this.setState({
@@ -142,27 +151,23 @@ class Newlead extends Component {
             assign_to: '',
             estimated_budget: '',
             referred_by: '',
-            //attachment: '',
+            attachment: '',
             full_name: '',
             email: '',
             company: '',
             designation: '',
-            skypeid: '',
-            streetaddress: '',
+            skype_id: '',
+            street_address: '',
             city: '',
             state: '',
             country: '',
             phone: '',
-            values: [],
-            valuesphone: []
+            secondary_email1: '',
+            secondary_email2: [],
+            secondary_phone2: [],
+            secondary_phone1: '',
         })
     }
-    //      handleChange(e) {
-    //        let fields = this.state.fields;
-    //        fields[e.target.name] = e.target.value;
-    //        this.setState({
-    //          fields
-    //        });
 
     //   }
 
@@ -180,76 +185,9 @@ class Newlead extends Component {
     //        }
     //
     //      }
-    //
-    //      validateForm() {
-    //
-    //        let fields = this.state.fields;
-    //        let errors = {};
-    //        let formIsValid = true;
-    //
-    //        if (!fields["title"]) {
-    //          formIsValid = false;
-    //          errors["title"] = "*Please enter your title.";
-    //        }
-    //
-    //        if (typeof fields["title"] !== "undefined") {
-    //          if (!fields["title"].match(/^[a-zA-Z ]*$/)) {
-    //            formIsValid = false;
-    //            errors["title"] = "*Please enter alphabet characters only.";
-    //          }
-    //        }
-    //
-    //        if (!fields["email"]) {
-    //          formIsValid = false;
-    //          errors["email"] = "*Please enter your email-ID.";
-    //        }
-    //
-    //        if (typeof fields["email"] !== "undefined") {
-    //          //regular expression for email validation
-    //          var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-    //          if (!pattern.test(fields["email"])) {
-    //            formIsValid = false;
-    //            errors["email"] = "*Please enter valid email-ID.";
-    //          }
-    //        }
-    //
-    //        if (!fields["mobileno"]) {
-    //          formIsValid = false;
-    //          errors["mobileno"] = "*Please enter your mobile no.";
-    //        }
-    //
-    //        if (typeof fields["mobileno"] !== "undefined") {
-    //          if (!fields["mobileno"].match(/^[0-9]{10}$/)) {
-    //            formIsValid = false;
-    //            errors["mobileno"] = "*Please enter valid mobile no.";
-    //          }
-    //        }
-    //        if (!fields["source"]) {
-    //            formIsValid = false;
-    //            errors["source"] = "*Please select source";
-    //          }
 
-    // if (!fields["password"]) {
-    //   formIsValid = false;
-    //   errors["password"] = "*Please enter your password.";
-    // }
-
-    // if (typeof fields["password"] !== "undefined") {
-    //   if (!fields["password"].match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/)) {
-    //     formIsValid = false;
-    //     errors["password"] = "*Please enter secure and strong password.";
-    //   }
-    // }
-
-    //        this.setState({
-    //          errors: errors
-    //        });
-    //        return formIsValid;
-    //
-    //
-    //      }
     render() {
-        const { title, description, source, url, domain, tags, technology, assign_to, estimated_budget, referred_by, attachment, full_name, email, company, designation, skypeid, streetaddress, city, state, country, phone } = this.state
+        const { title, description, source, url, domain, tags, technology, assign_to, estimated_budget, referred_by, attachment, full_name, email, company, designation, skype_id, street_address, city, state, country, phone } = this.state
         return (
             <div>
                 <Row>
@@ -259,7 +197,7 @@ class Newlead extends Component {
                         </div>
                     </Col>
                 </Row>
-                <form action="" method="post" name="form" encType="multipart/form-data" onSubmit={this.submitHandler} id="create-course-form" required={this.required}>
+                <form action="" method="post" name="form" enctype="multipart/form-data" onSubmit={this.submitHandler} id="create-course-form" required={this.required}>
                     <Row>
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <Label for="myid">Title*</Label><br></br>
@@ -298,7 +236,7 @@ class Newlead extends Component {
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <div>
                                 <Label for="attechment">Attachment</Label>
-                                <input type="file" id="attechment" name="attachment" label='File' value={attachment} onChange={this.changeHandler} className="attachment" />
+                                <input type="file" id="file" onChange={this.fileChangedHandler} className="attachment"/>
                             </div><br></br>
                         </Col>
                         <Col sm={{ size: 'auto', offset: 4 }}>
@@ -352,7 +290,7 @@ class Newlead extends Component {
                             </Col>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="streetaddress">Street Address</Label>
-                                <input type="text" id="streetaddress" name="streetaddress" value={streetaddress} onChange={this.changeHandler} className="Sreetaddress" />
+                                <input type="text" id="streetaddress" name="street_address" value={street_address} onChange={this.changeHandler} className="Sreetaddress" />
                             </Col>
                         </Row><br></br>
                         <Row>
@@ -391,7 +329,7 @@ class Newlead extends Component {
                         <Row>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="skypeid">Skype ID</Label>
-                                <input type="text" name="skypeid" value={skypeid} onChange={this.changeHandler} id="skypeid" className="Skypeid" />
+                                <input type="text" name="skype_id" value={skype_id} onChange={this.changeHandler} id="skypeid" className="Skypeid" />
                             </Col>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="phone">Phone</Label>
@@ -410,7 +348,7 @@ class Newlead extends Component {
                         </Col>
                         <Col sm={{ size: 'auto', offset: 2 }}>
                             <div>
-                                <button type="submit" onClick={this.submitted} value="submit" className="btn btn-primary" >Submit</button>
+                                <button type="submit" value="submit" className="btn btn-primary" >Submit</button>
                             </div>
                         </Col>
                         <Col sm={{ size: 'auto', offset: 2 }}>

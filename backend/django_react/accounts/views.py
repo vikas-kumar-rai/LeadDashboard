@@ -35,7 +35,25 @@ class AccountsListCreate(APIView):
         # print("data is going to post")
         # print(request.data['attachment'])
         request.data['attachment']=None
-
+        # print("before if: ---------", request.data['attachment'])
+        if request.data['secondary_email2']:
+            if len(request.data['secondary_email2']) > 1:
+                request.data['secondary_email1'] = request.data['secondary_email2'][0]
+                request.data['secondary_email2'] = request.data['secondary_email2'][1]
+            elif len(request.data['secondary_email2']) == 1:
+                request.data['secondary_email1'] = request.data['secondary_email2'][0]
+                request.data['secondary_email2'] = " "
+        else:
+            request.data['secondary_email2'] = " "
+        if request.data['secondary_phone2']:
+            if len(request.data['secondary_phone2']) > 1:
+                request.data['secondary_phone1'] = request.data['secondary_phone2'][0]
+                request.data['secondary_phone2'] = request.data['secondary_phone2'][1]
+            elif len(request.data['secondary_phone2']) == 1:
+                request.data['secondary_phone1'] = request.data['secondary_phone2'][0]
+                request.data['secondary_phone2'] = " "
+        else:
+            request.data['secondary_phone2'] = ""
         serializer = AccountsSerializer(data=request.data)
         print("hellooo",serializer)
         print("serializer")

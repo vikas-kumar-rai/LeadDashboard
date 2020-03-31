@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-
+from phone_field import PhoneField
 
 def upload_path(filname):
     return '/'.join([filname])
@@ -22,7 +22,8 @@ class Accounts(models.Model):
     attachment = models.FileField(blank=True, null=True, upload_to = 'media/')
     full_name = models.CharField(max_length=100, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
-    values = models.EmailField(null=True, blank=True)
+    secondary_email1 = models.EmailField(null=True, blank=True)
+    secondary_email2 = models.EmailField(null=True, blank=True)
     company = models.CharField(max_length=100, null=True, blank=True)
     designation = models.CharField(max_length=100, null=True, blank=True)
     skype_id = models.CharField(max_length=50, null=True, blank=True)
@@ -30,8 +31,9 @@ class Accounts(models.Model):
     city = models.CharField(max_length=50, null=True, blank=True)
     state = models.CharField(max_length=50, null=True, blank=True)
     country = models.CharField(max_length=30, null=True, blank=True)
-    phone = models.CharField(max_length=10, null=True, blank=True)
-    values_phone = models.CharField(max_length=10, null=True, blank=True)
+    phone = PhoneField(blank=True, null= True)
+    secondary_phone1 = PhoneField(blank=True, null = True)
+    secondary_phone2 = PhoneField(blank=True, null=True)
     status = models.CharField(max_length=20, null = True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True, null=True)
