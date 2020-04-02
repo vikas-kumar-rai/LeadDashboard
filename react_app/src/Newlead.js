@@ -12,14 +12,15 @@ import { Row, Col, Label,Button} from 'reactstrap';
 
 const url1='http://127.0.0.1:8000/';
 class Newlead extends Component {
-    constructor(props) {
-        super(props)
+    constructor(state) {
+        super(state)
         //        this.state = {
         //          fields: {},
         //          errors: {},
         //
         //        }
         this.state = {
+            data:[],
             title: '',
             description: '',
             source: '',
@@ -48,7 +49,6 @@ class Newlead extends Component {
             secondary_phone2: [],
 
         }
-
  /*
                 this.handleChange = this.handleChange.bind(this);
                 this.submituserRegistrationForm = this.submituserRegistrationForm.bind(this);
@@ -58,6 +58,19 @@ class Newlead extends Component {
         this.handleSubmit=this.handleSubmit.bind(this);
 //        this.refreshPage=this.refreshPage.bind(this);
 //        this.submitted=this.submitted.bind(this);
+    }
+    getData()
+    {
+    fetch("http://localhost:8000")
+    .then((Response)=>
+    Response.json())
+    .then((findresponse)=>{
+        console.log(findresponse )
+        // this.setState({data:findresponse})
+        })
+    }
+    refreshPage() {
+        window.location.reload(false);
     }
     createUI(){
      return this.state.secondary_email2.map((el, i) =>
@@ -140,33 +153,7 @@ class Newlead extends Component {
 
     }    
     handleSubmit(){
-        this.setState({
-            title: '',
-            description: '',
-            source: '',
-            url: '',
-            domain: '',
-            tags: '',
-            technology: '',
-            assign_to: '',
-            estimated_budget: '',
-            referred_by: '',
-            attachment: '',
-            full_name: '',
-            email: '',
-            company: '',
-            designation: '',
-            skype_id: '',
-            street_address: '',
-            city: '',
-            state: '',
-            country: '',
-            phone: '',
-            secondary_email1: '',
-            secondary_email2: [],
-            secondary_phone2: [],
-            secondary_phone1: '',
-        })
+        window.location.reload(false);
     }
 
     //   }
@@ -190,6 +177,29 @@ class Newlead extends Component {
         const { title, description, source, url, domain, tags, technology, assign_to, estimated_budget, referred_by, attachment, full_name, email, company, designation, skype_id, street_address, city, state, country, phone } = this.state
         return (
             <div>
+                {
+                this.state.data.map((dynamicData,key)=>
+                {
+                if (dynamicData.email === this.refs.email.value) {
+                return (
+                     <div> 
+                        {
+                            this.refs.full_name.value=dynamicData.full_name,
+                            this.refs.street_address.value=dynamicData.street_address,
+                            this.refs.email.value=dynamicData.email,
+                            this.refs.city.value=dynamicData.city,
+                            this.refs.company.value=dynamicData.company,
+                            this.refs.state.value=dynamicData.state,
+                            this.refs.designation.value=dynamicData.designation,
+                            this.refs.country.value=dynamicData.country,
+                            this.refs.skype_id.value=dynamicData.skype_id,
+                            this.refs.phone.value=dynamicData.phone
+                        }
+                                                   
+                    </div>
+                         )
+                }})
+                }
                 <Row>
                     <Col sm={{ size: 'auto', offset: 1 }}>
                         <div>
@@ -279,62 +289,62 @@ class Newlead extends Component {
                             </div>
                         </Col>
                         <Col className="Existing">
-                            Existing?
+                            <button type="button" class="btn btn-link" onClick={this.getData}>Existing?</button>
                         </Col>
                     </Row>
                     <div className="prospectus"><br></br>
                         <Row>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="full_name">Full Name</Label>
-                                <input type="text" id="full_name" name="full_name" value={full_name} onChange={this.changeHandler} className="full_name" />
+                                <input type="text" id="full_name" name="full_name" ref="full_name" value={full_name} onChange={this.changeHandler} className="full_name" />
                             </Col>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="streetaddress">Street Address</Label>
-                                <input type="text" id="streetaddress" name="street_address" value={street_address} onChange={this.changeHandler} className="Sreetaddress" />
+                                <input type="text" id="streetaddress" name="street_address" ref="street_address" value={street_address} onChange={this.changeHandler} className="Sreetaddress" />
                             </Col>
                         </Row><br></br>
                         <Row>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="email" >Email</Label>
-                                <input type="text" name="email" value={email} onChange={this.changeHandler} id="email" className="email" />
-                                <button className="add-icon" value="test" id="email" onClick={this.addClick.bind(this)}>+</button>
+                                <input type="text" name="email" ref="email" value={email} onChange={this.changeHandler} id="email" className="email" />
+                                <Button className="add-icon" onClick={this.addClick.bind(this)}><p className="plussign">+</p></Button>
                                 {this.createUI()}
                                 {/* <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div> */}
                             </Col>
                             <Col >
                                 <Label for="city" className="city">City</Label>
-                                <input type="text" name="city" value={city} onChange={this.changeHandler} id="city" className="city1" />
+                                <input type="text" name="city" ref="city" value={city} onChange={this.changeHandler} id="city" className="city1" />
                             </Col>
                         </Row><br></br>
                         <Row>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="company">Company</Label>
-                                <input type="text" name="company" value={company} onChange={this.changeHandler} id="company" className="company" />
+                                <input type="text" name="company" ref="company" value={company} onChange={this.changeHandler} id="company" className="company" />
                             </Col>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="state">State</Label>
-                                <input type="text" name="state" value={state} onChange={this.changeHandler} id="state" className="state" />
+                                <input type="text" name="state" ref="state" value={state} onChange={this.changeHandler} id="state" className="state" />
                             </Col>
                         </Row><br></br>
                         <Row>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="designation">Designation</Label>
-                                <input type="text" name="designation" value={designation} onChange={this.changeHandler} id="designation" className="designation" />
+                                <input type="text" name="designation" ref="designation" value={designation} onChange={this.changeHandler} id="designation" className="designation" />
                             </Col>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="country">Country</Label>
-                                <input type="text" name="country" value={country} onChange={this.changeHandler} id="country" className="country" />
+                                <input type="text" name="country" ref="country" value={country} onChange={this.changeHandler} id="country" className="country" />
                             </Col>
                         </Row><br></br>
                         <Row>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="skypeid">Skype ID</Label>
-                                <input type="text" name="skype_id" value={skype_id} onChange={this.changeHandler} id="skypeid" className="Skypeid" />
+                                <input type="text" name="skype_id" ref="skype_id" value={skype_id} onChange={this.changeHandler} id="skypeid" className="Skypeid" />
                             </Col>
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="phone">Phone</Label>
-                                <input type="text" name="phone" value={phone} onChange={this.changeHandler} id="phone" className="mobileno" />
-                                <button className="add-icon" id="phone" onClick={this.addClickPhone.bind(this)}>+</button>
+                                <input type="text" name="phone" ref="phone" value={phone} onChange={this.changeHandler} id="phone" className="mobileno" />
+                                <Button className="add-icon"  onClick={this.addClickPhone.bind(this)}><p className="plussign">+</p></Button>
                                 {this.createUIPhone()}
                                 {/* <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div> */}
                             </Col>
@@ -353,13 +363,11 @@ class Newlead extends Component {
                         </Col>
                         <Col sm={{ size: 'auto', offset: 2 }}>
                             <div>
-                                <Button type="reset" name="cancel" className="btn btn-danger" onClick={this.handleSubmit} value="cancel" >Cancel</Button>
+                                <button type="reset" name="cancel" className="btn btn-danger" onClick={this.handleSubmit} value="cancel" >Cancel</button>
                             </div>
                         </Col>
                     </Row>
                 </form>
-                {/* <script type="text/javascript" charSet="ytf-8" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> */}
-                {/* <script type="text/javascript" charSet="ytf-8" src="static:{js/main.js}"></script> */}
             </div>
         )
     }
