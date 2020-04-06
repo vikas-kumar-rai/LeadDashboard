@@ -38,6 +38,23 @@ class LeadDashboard extends React.Component{
                     })
                 })
     }
+    componentDidUpdate(prevprops,prevstate)
+    {   
+    console.log("prevstate",prevstate,"this.state",this.state)
+     if(prevstate.toggle===true && this.state.toggle===false)
+     {
+        fetch("http://localhost:8000")
+        .then((Response)=>
+        Response.json()).then((findresponse)=>
+        {
+            console.log(findresponse)
+            this.setState({
+                data:findresponse
+            })
+        })
+         
+     }
+    }
 
     render(){
         let depModalClose=()=>this.setState({toggle:false})

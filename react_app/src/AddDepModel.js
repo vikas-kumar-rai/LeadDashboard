@@ -26,8 +26,19 @@ class AddDepModal extends Component{
        this.toggle5=this.toggle5.bind(this);
        this.toggle10=this.toggle10.bind(this);
        this.toggle12=this.toggle12.bind(this);
+       this.clickResponse=this.clickResponse.bind(this);
     }
+    
+    clickResponse(){
+      axios.put('http://127.0.0.1:8000/accounts/'+ this.props.id1+'/', {status: "ResponseGenerated"})
+			.then(response => {
+				console.log(response);
+			})
+			.catch(error => {
+				console.log(error);
+			})
 
+    }
 
      
     toggle3(e){
@@ -124,7 +135,7 @@ class AddDepModal extends Component{
         <div>
         {this.props.status1 === "Pitched" ?(
         <div>
-         <Button  variant="primary">Response Generated</Button>
+         <Button  variant="primary" onClick={this.clickResponse}>Response Generated</Button>
         </div>
         ):(
 
