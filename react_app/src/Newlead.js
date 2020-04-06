@@ -1,26 +1,16 @@
 import React, { Component } from 'react';
 // import ReactDOM from 'react-dom';
-// import {table} from 'react-bootstrape';
 import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios';
 import './Newlead.css';
-// import bootstrap from 'react-bootstrape';
-// import main from './main';
-// import 'jquery/dist/jquery.min.js'
-// import { Form,Button, FormGroup, FormControl,} from "react-bootstrap";
-import { Row, Col, Label,Button} from 'reactstrap';
+import { Row, Col, Label, Button } from 'reactstrap';
 
-const url1='http://127.0.0.1:8000/';
+const url1 = 'http://127.0.0.1:8000/';
 class Newlead extends Component {
     constructor(state) {
         super(state)
-        //        this.state = {
-        //          fields: {},
-        //          errors: {},
-        //
-        //        }
         this.state = {
-            data:[],
+            data: [],
             title: '',
             description: '',
             source: '',
@@ -43,162 +33,113 @@ class Newlead extends Component {
             country: '',
             phone: '',
             status: 'New',
-            secondary_email1: '',
             secondary_email2: [],
-            secondary_phone1: '',
             secondary_phone2: [],
-
         }
- /*
-                this.handleChange = this.handleChange.bind(this);
-                this.submituserRegistrationForm = this.submituserRegistrationForm.bind(this);
-          
-        */
-
-        this.handleSubmit=this.handleSubmit.bind(this);
-//        this.refreshPage=this.refreshPage.bind(this);
-//        this.submitted=this.submitted.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-    getData()
-    {
-    fetch("http://localhost:8000")
-    .then((Response)=>
-    Response.json())
-    .then((findresponse)=>{
-        console.log(findresponse )
-        // this.setState({data:findresponse})
-        })
+    getData() {
+        fetch("http://localhost:8000")
+            .then((Response) =>
+                Response.json())
+            .then((findresponse) => {
+                console.log(findresponse)
+                // this.setState({data:findresponse})
+            })
     }
     refreshPage() {
         window.location.reload(false);
     }
-    createUI(){
-     return this.state.secondary_email2.map((el, i) =>
-         <div key={i}>
-            <input type="text" value={el||''} onChange={this.handleChange.bind(this, i)} className="emailplus"/>
-            <input type='button' value='-' onClick={this.removeClick.bind(this, i)} className="add-icon"/>
-         </div>          
-     )
+    createUI() {
+        return this.state.secondary_email2.map((el, i) =>
+            <div key={i}>
+                <input type="text" value={el || ''} onChange={this.handleChange.bind(this, i)} className="emailplus" />
+                <input type='button' value='-' onClick={this.removeClick.bind(this, i)} className="add-icon" />
+            </div>
+        )
     }
-
-    createUIPhone(){
-     return this.state.secondary_phone2.map((q, r) =>
-         <div key={r}>
-            <input type="text" value={q||''} onChange={this.handleChangePhone.bind(this, r)} className="phoneplus"/>
-            <input type='button' value='-' onClick={this.removeClickPhone.bind(this, r)} className="add-icon"/>
-         </div>          
-     )
+    createUIPhone() {
+        return this.state.secondary_phone2.map((q, r) =>
+            <div key={r}>
+                <input type="text" value={q || ''} onChange={this.handleChangePhone.bind(this, r)} className="phoneplus" />
+                <input type='button' value='-' onClick={this.removeClickPhone.bind(this, r)} className="add-icon" />
+            </div>
+        )
     }
-
-
     handleChangePhone(r, event) {
-     let secondary_phone2 = [...this.state.secondary_phone2];
-     secondary_phone2[r] = event.target.value;
-     this.setState({ secondary_phone2 });
+        let secondary_phone2 = [...this.state.secondary_phone2];
+        secondary_phone2[r] = event.target.value;
+        this.setState({ secondary_phone2 });
     }
-
     handleChange(i, event) {
-     let secondary_email2 = [...this.state.secondary_email2];
-     secondary_email2[i] = event.target.value;
-     this.setState({ secondary_email2 });
+        let secondary_email2 = [...this.state.secondary_email2];
+        secondary_email2[i] = event.target.value;
+        this.setState({ secondary_email2 });
     }
-  
-    addClick(){
-        this.setState(prevState => ({ secondary_email2: [...prevState.secondary_email2, '']}))
+    addClick() {
+        this.setState(prevState => ({ secondary_email2: [...prevState.secondary_email2, ''] }))
     }
-    addClickPhone(){
-        this.setState(prevState => ({ secondary_phone2: [...prevState.secondary_phone2, '']}))
+    addClickPhone() {
+        this.setState(prevState => ({ secondary_phone2: [...prevState.secondary_phone2, ''] }))
     }
-  
-    removeClick(i){
-     let secondary_email2 = [...this.state.secondary_email2];
-     secondary_email2.splice(i,1);
-     this.setState({ secondary_email2 });
-     }
-
-
-    removeClickPhone(r){
-     let secondary_phone2 = [...this.state.secondary_phone2];
-     secondary_phone2.splice(r,1);
-     this.setState({ secondary_phone2 });
-     }
-
-//    submitted(){
-//        alert("Form submitted ");
-//        window.location.reload(false);
-//    }
-//    refreshPage() {
-//        window.location.reload(false);
-//    }
+    removeClick(i) {
+        let secondary_email2 = [...this.state.secondary_email2];
+        secondary_email2.splice(i, 1);
+        this.setState({ secondary_email2 });
+    }
+    removeClickPhone(r) {
+        let secondary_phone2 = [...this.state.secondary_phone2];
+        secondary_phone2.splice(r, 1);
+        this.setState({ secondary_phone2 });
+    }
     changeHandler = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
-
     fileChangedHandler = (e) => {
-    console.log(e.target.files[0])
-    this.setState({ attachment: e.target.files[0] });
+        console.log(e.target.files[0])
+        this.setState({ attachment: e.target.files[0] });
     };
 
     submitHandler = e => {
         e.preventDefault();
         console.log(this.state)
-        axios.post(url1 , this.state) 
+        axios.post(url1, this.state)
             .then(response => {
                 console.log(response)
             })
             .catch(error => {
                 console.log(error)
             })
-
-
-    }    
-    handleSubmit(){
+    }
+    handleSubmit() {
         window.location.reload(false);
     }
-
-    //   }
-
-    //      submituserRegistrationForm(e) {
-    //        e.preventDefault();
-    //        if (this.validateForm()) {
-    //            let fields = {};
-    //            fields["title"] = "";
-    //            fields["email"] = "";
-    //            fields["mobileno"] = "";
-    //            fields["source"] = "";
-    //            // fields["password"] = "";
-    //            this.setState({fields:fields});
-    //            alert("Form submitted");
-    //        }
-    //
-    //      }
 
     render() {
         const { title, description, source, url, domain, tags, technology, assign_to, estimated_budget, referred_by, attachment, full_name, email, company, designation, skype_id, street_address, city, state, country, phone } = this.state
         return (
             <div>
                 {
-                this.state.data.map((dynamicData,key)=>
-                {
-                if (dynamicData.email === this.refs.email.value) {
-                return (
-                     <div> 
-                        {
-                            this.refs.full_name.value=dynamicData.full_name,
-                            this.refs.street_address.value=dynamicData.street_address,
-                            this.refs.email.value=dynamicData.email,
-                            this.refs.city.value=dynamicData.city,
-                            this.refs.company.value=dynamicData.company,
-                            this.refs.state.value=dynamicData.state,
-                            this.refs.designation.value=dynamicData.designation,
-                            this.refs.country.value=dynamicData.country,
-                            this.refs.skype_id.value=dynamicData.skype_id,
-                            this.refs.phone.value=dynamicData.phone
+                    this.state.data.map((dynamicData, key) => {
+                        if (dynamicData.email === this.refs.email.value) {
+                            return (
+                                <div>
+                                    {
+                                        this.refs.full_name.value = dynamicData.full_name,
+                                        this.refs.street_address.value = dynamicData.street_address,
+                                        this.refs.email.value = dynamicData.email,
+                                        this.refs.city.value = dynamicData.city,
+                                        this.refs.company.value = dynamicData.company,
+                                        this.refs.state.value = dynamicData.state,
+                                        this.refs.designation.value = dynamicData.designation,
+                                        this.refs.country.value = dynamicData.country,
+                                        this.refs.skype_id.value = dynamicData.skype_id,
+                                        this.refs.phone.value = dynamicData.phone
+                                    }
+                                </div>
+                            )
                         }
-                                                   
-                    </div>
-                         )
-                }})
+                    })
                 }
                 <Row>
                     <Col sm={{ size: 'auto', offset: 1 }}>
@@ -211,7 +152,7 @@ class Newlead extends Component {
                     <Row>
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <Label for="myid">Title*</Label><br></br>
-                            <input type="text" name="title" value={title} onChange={this.changeHandler} className="title" autoFocus/><br></br>
+                            <input type="text" name="title" value={title} onChange={this.changeHandler} className="title" autoFocus /><br></br>
                             {/* <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div> */}
                         </Col><br></br>
                         <Col sm={{ size: 'auto', offset: 4 }} className="source">
@@ -246,7 +187,7 @@ class Newlead extends Component {
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <div>
                                 <Label for="attechment">Attachment</Label>
-                                <input type="file" id="file" onChange={this.fileChangedHandler} className="attachment"/>
+                                <input type="file" id="file" onChange={this.fileChangedHandler} className="attachment" />
                             </div><br></br>
                         </Col>
                         <Col sm={{ size: 'auto', offset: 4 }}>
@@ -273,7 +214,7 @@ class Newlead extends Component {
                         </Col>
                         <Col sm={{ size: 'auto', offset: 3 }} >
                             <Label for="Assigne" className="assignee" >Assignee*</Label><br></br>
-                            <input type="radio" className="assignee" />
+                            <input type="radio" id="Assigne" className="assignee" />
                             <Label for="Assignee" >Assign To</Label>
                             <select name="assign_to" value={assign_to} onChange={this.changeHandler} id="Assignee" className="assign_to">
                                 <option >choose any one</option>
@@ -344,7 +285,7 @@ class Newlead extends Component {
                             <Col sm={{ size: 'auto', offset: 1 }}>
                                 <Label for="phone">Phone</Label>
                                 <input type="text" name="phone" ref="phone" value={phone} onChange={this.changeHandler} id="phone" className="mobileno" />
-                                <Button className="add-icon"  onClick={this.addClickPhone.bind(this)}><p className="plussign">+</p></Button>
+                                <Button className="add-icon" onClick={this.addClickPhone.bind(this)}><p className="plussign">+</p></Button>
                                 {this.createUIPhone()}
                                 {/* <div style={{color: "red",fontSize: "14px"}} className="errorMsg"></div> */}
                             </Col>
