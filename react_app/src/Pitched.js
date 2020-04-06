@@ -40,7 +40,7 @@ class Pitched extends React.Component {
                                     <br></br>
                                     <br></br>
                                     <br></br>
-                                    <Label htmlFor="http">http://</Label>
+                                    <Label htmlFor="http">http:</Label>
                                     <input type="text" id="http" className="http" /><br></br>
                                     <br></br>
                                 </Col>

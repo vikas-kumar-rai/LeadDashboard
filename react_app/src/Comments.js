@@ -36,6 +36,25 @@ class Comments extends React.Component{
       toggle14(e){
         this.setState({toggle13:!this.state.toggle13});
       }
+
+     componentDidUpdate(prevprops,prevstate)
+    {
+    console.log("prevstate",prevstate,"this.state",this.state)
+     if(prevstate.toggle13===true && this.state.toggle15===false)
+     {
+        fetch(url)
+        .then((Response)=>
+        Response.json()).then((findresponse)=>
+        {
+            console.log(findresponse)
+            this.setState({
+                data:findresponse
+            })
+        })
+
+     }
+    }
+
     render(){
 
         let  CommentsModalClose=()=>this.setState({toggle13:false})

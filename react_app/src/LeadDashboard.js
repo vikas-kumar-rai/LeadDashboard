@@ -1,8 +1,8 @@
 import React from 'react';
- 
+
 import 'bootstrap/dist/css/bootstrap.css';
 import {Container,Row,Col ,ListGroup, ListGroupItem} from 'reactstrap';
- 
+
 import './LeadDashboard.css';
 import AddDepModal from './AddDepModel';
 class LeadDashboard extends React.Component{
@@ -16,7 +16,7 @@ class LeadDashboard extends React.Component{
         name:''
     }
     this.toggleButton=this.toggleButton.bind(this);
-  
+
     }
     toggleButton(event){
         this.setState({toggle:!this.state.toggle,
@@ -39,6 +39,24 @@ class LeadDashboard extends React.Component{
                 })
     }
 
+        componentDidUpdate(prevprops,prevstate)
+    {
+    console.log("prevstate",prevstate,"this.state",this.state)
+     if(prevstate.toggle===true && this.state.toggle===false)
+     {
+        fetch("http://localhost:8000")
+        .then((Response)=>
+        Response.json()).then((findresponse)=>
+        {
+            console.log(findresponse)
+            this.setState({
+                data:findresponse
+            })
+        })
+
+     }
+    }
+
     render(){
         let depModalClose=()=>this.setState({toggle:false})
 
@@ -52,40 +70,40 @@ class LeadDashboard extends React.Component{
                             <h1 className="text-center">Lead Dashboard</h1>
                                 <br></br>
                                 <Row>
-                                    <Col> 
+                                    <Col>
                                             <ListGroup>
                                             <ListGroupItem color='success'>New</ListGroupItem>
                                                 {
                                                 this.state.data.map((dynamicData,key)=>
-                                            
+
                                                 {
                                                 if (dynamicData.status === "New") {
                                                     return (
-                                                    <div> 
-                                                 
+                                                    <div>
+
                                                  <ListGroupItem tag="button" onClick={this.toggleButton}  value={dynamicData.title} id={dynamicData.id} name={dynamicData.status} action>{dynamicData.title}</ListGroupItem>
                                                  <AddDepModal show={this.state.toggle} onHide={depModalClose} value1={this.state.value} id1={this.state.id}  status1={this.state.name}/>
                                                     </div>
                                                     )
                                                 }})
                                             }
-                                           
 
-                                            
+
+
                                             </ListGroup>
                                     </Col>
-                                    <Col> 
-        
+                                    <Col>
+
                                     <ListGroup>
                                             <ListGroupItem color='success'>Accepted</ListGroupItem>
                                             {
                                                 this.state.data.map((dynamicData,key)=>
-                                            
+
                                                 {
                                                 if (dynamicData.status === "Accepted") {
                                                     return (
-                                                    <div> 
-                                                 
+                                                    <div>
+
                                                  <ListGroupItem tag="button" onClick={this.toggleButton}  value={dynamicData.title} id={dynamicData.id} name={dynamicData.status}  action>{dynamicData.title}</ListGroupItem>
                                                  <AddDepModal show={this.state.toggle} onHide={depModalClose} value1={this.state.value}  id1={this.state.id} status1={this.state.name}/>
                                                     </div>
