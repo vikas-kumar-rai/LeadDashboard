@@ -1,7 +1,7 @@
-import React  from 'react';
+import React,{ useState } from 'react';
 //import Attachment from './Attachment';
 //import {Row,Col} from 'reactstrap';
-import { Modal,Row,Col} from 'react-bootstrap';
+import { Button,Modal,ButtonToolbar,Row,Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './Comments.css';
 import './Comment.css';
@@ -21,10 +21,10 @@ class Comments extends React.Component{
       }
 
         componentDidMount(){
-                fetch(url)
-                .then((Response)=>
-                Response.json())
-                .then((findresponse)=>
+                fetch(url).
+                then((Response)=>
+                Response.json()).
+                then((findresponse)=>
                 {
                 console.log(findresponse)
                 this.setState({
@@ -36,25 +36,6 @@ class Comments extends React.Component{
       toggle14(e){
         this.setState({toggle13:!this.state.toggle13});
       }
-
-     componentDidUpdate(prevprops,prevstate)
-    {
-    console.log("prevstate",prevstate,"this.state",this.state)
-     if(prevstate.toggle13===true && this.state.toggle15===false)
-     {
-        fetch(url)
-        .then((Response)=>
-        Response.json()).then((findresponse)=>
-        {
-            console.log(findresponse)
-            this.setState({
-                data:findresponse
-            })
-        })
-
-     }
-    }
-
     render(){
 
         let  CommentsModalClose=()=>this.setState({toggle13:false})
@@ -66,7 +47,7 @@ class Comments extends React.Component{
                 {
                 this.state.data.map((dynamicData,key)=>
                 {
-                   if (dynamicData.accounts === this.props.id){
+                   if (dynamicData.accounts == this.props.id){
                 return(
                 <div>
                 <Row>
