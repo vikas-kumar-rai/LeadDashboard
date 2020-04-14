@@ -121,7 +121,13 @@ class Newlead extends Component {
     submitHandler = e => {
         e.preventDefault();
         console.log(this.state)
-        axios.post(url1, this.state)
+        axios.post(url1, this.state, {
+            headers: {
+                'Authorization': "JWT " + localStorage.getItem('token'),
+                'Content-Type': 'application/json',
+                'accept': 'application/json'
+                }
+        })
             .then(response => {
                 console.log(response)
             })
