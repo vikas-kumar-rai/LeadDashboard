@@ -21,7 +21,13 @@ class Comments extends React.Component{
       }
 
         componentDidMount(){
-                fetch(url).
+                fetch(url, {
+                        headers: {
+                        'Authorization': "JWT " + localStorage.getItem('token'),
+                        'Content-Type': 'application/json',
+                        'accept': 'application/json'
+                        }
+                }).
                 then((Response)=>
                 Response.json()).
                 then((findresponse)=>
@@ -94,7 +100,13 @@ class Comment extends React.Component{
         submitHandler = e => {
 		e.preventDefault()
 
-		axios.post(url, this.state)
+		axios.post(url, this.state, {
+		    headers: {
+                'Authorization': "JWT " + localStorage.getItem('token'),
+                'Content-Type': 'application/json',
+                'accept': 'application/json'
+                }
+		})
 			.then(response => {
 				console.log(response);
 			})

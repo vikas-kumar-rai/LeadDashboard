@@ -21,8 +21,20 @@ class Reject extends React.Component{
 		submitHandler = e => {
 		e.preventDefault()
 		console.log('reject',this.state);
-        axios.post('http://127.0.0.1:8000/reject', this.state)
-        axios.put('http://127.0.0.1:8000/accounts/'+ this.props.id+'/', {status: "Rejected",})
+        axios.post('http://127.0.0.1:8000/reject', this.state, {
+            headers: {
+                'Authorization': "JWT " + localStorage.getItem('token'),
+                'Content-Type': 'application/json',
+                'accept': 'application/json'
+                }
+        })
+        axios.put('http://127.0.0.1:8000/accounts/'+ this.props.id+'/', {status: "Rejected",}, {
+            headers: {
+                'Authorization': "JWT " + localStorage.getItem('token'),
+                'Content-Type': 'application/json',
+                'accept': 'application/json'
+                }
+        })
 			.then(response => {
 				console.log(response);
 			})

@@ -14,7 +14,13 @@ class LMSSystem1 extends Component {
         }
     }
     componentDidMount() {
-        fetch("http://localhost:8000/")
+        fetch("http://localhost:8000/", {
+            headers: {
+                'Authorization': "JWT " + localStorage.getItem('token'),
+                'Content-Type': 'application/json',
+                'accept': 'application/json'
+                }
+            })
             .then((Response) =>
                 Response.json())
             .then((findresponse) => {

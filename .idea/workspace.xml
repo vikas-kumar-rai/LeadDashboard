@@ -2,10 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="931d7eee-6f03-433d-8239-5cace35bc9f6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/react_app/src/Logout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/myproj.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/myproj.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/django_react/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/django_react/accounts/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/django_react/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/backend/django_react/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/django_react/django_react/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/django_react/django_react/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/django_react/django_react/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/django_react/django_react/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react_app/src/AddDepModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/react_app/src/AddDepModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react_app/src/ApiGet.js" beforeDir="false" afterPath="$PROJECT_DIR$/react_app/src/ApiGet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react_app/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/react_app/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react_app/src/Comments.js" beforeDir="false" afterPath="$PROJECT_DIR$/react_app/src/Comments.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react_app/src/LMSSystem.js" beforeDir="false" afterPath="$PROJECT_DIR$/react_app/src/LMSSystem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react_app/src/LMSSystem1.js" beforeDir="false" afterPath="$PROJECT_DIR$/react_app/src/LMSSystem1.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react_app/src/LeadDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/react_app/src/LeadDashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react_app/src/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/react_app/src/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react_app/src/Newlead.js" beforeDir="false" afterPath="$PROJECT_DIR$/react_app/src/Newlead.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react_app/src/Reject.js" beforeDir="false" afterPath="$PROJECT_DIR$/react_app/src/Reject.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,6 +31,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1XyGr0Td1QP72brTERBXA50K6Ed" />
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../authentication project" />
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -54,5 +71,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://F:/vikas/userproject/home/urls.py</url>
+          <line>4</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

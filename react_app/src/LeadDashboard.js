@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Redirect } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import {Container,Row,Col ,ListGroup, ListGroupItem} from 'reactstrap';
 
@@ -8,15 +8,23 @@ import AddDepModal from './AddDepModel';
 class LeadDashboard extends React.Component{
   constructor(props){
     super(props);
+    const token= localStorage.getItem("token")
+    console.log("nothing token",token)
+    let loggedIn =true
+
+    if(token == ''){
+        loggedIn=false
+        console.log("am here",loggedIn)
+    }
     this.state={
         data:[],
         toggle:false,
         value:"",
         id:"",
-        name:''
+        name:'',
+        loggedIn
     }
     this.toggleButton=this.toggleButton.bind(this);
-
     }
     toggleButton(event){
         this.setState({toggle:!this.state.toggle,
@@ -27,7 +35,13 @@ class LeadDashboard extends React.Component{
 
     }
     componentDidMount(){
-        fetch("http://127.0.0.1:8000/")
+        fetch("http://localhost:8000/", {
+            headers: {
+                'Authorization': "JWT " + localStorage.getItem('token'),
+                'Content-Type': 'application/json',
+                'accept': 'application/json'
+                }
+        })
         .then((Response)=>
                 Response.json())
                 .then((findresponse)=>
@@ -39,11 +53,17 @@ class LeadDashboard extends React.Component{
                 })
     }
     componentDidUpdate(prevprops,prevstate)
-    {   
-    console.log("prevstate",prevstate,"this.state",this.state)
+    {
+
      if(prevstate.toggle===true && this.state.toggle===false)
      {
-        fetch("http://127.0.0.1:8000/")
+        fetch("http://127.0.0.1:8000/", {
+            headers: {
+                'Authorization': "JWT " + localStorage.getItem('token'),
+                'Content-Type': 'application/json',
+                'accept': 'application/json'
+                }
+        })
         .then((Response)=>
         Response.json()).then((findresponse)=>
         {
@@ -52,16 +72,18 @@ class LeadDashboard extends React.Component{
                 data:findresponse
             })
         })
-         
+
      }
     }
 
     render(){
         let depModalClose=()=>this.setState({toggle:false})
 
-        console.log("lead dash");
-        console.log(this.state.id);
-
+//        console.log("lead dash");
+//        console.log(this.state.loggedIn);
+        if(this.state.loggedIn === false){
+            return <Redirect to="/login"/>
+        }
         return(
             <div>
                  <Container className="themed-container" fluid="md">
@@ -135,8 +157,7 @@ class LeadDashboard extends React.Component{
                                     <ListGroupItem color='success'>Response Generated</ListGroupItem>
                                      {
                                                 this.state.data.map((dynamicData,key)=>
-
-                                                {
+                                            {
                                                 if (dynamicData.status === "ResponseGenerated") {
                                                     return (
                                                     <div>

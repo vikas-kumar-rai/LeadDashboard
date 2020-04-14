@@ -38,8 +38,15 @@ class Newlead extends Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
     getData() {
-        fetch("http://localhost:8000")
+        fetch("http://localhost:8000", {
+            headers: {
+                'Authorization': "JWT " + localStorage.getItem('token'),
+                'Content-Type': 'application/json',
+                'accept': 'application/json'
+                }
+            })
             .then((Response) =>
                 Response.json())
             .then((findresponse) => {
@@ -47,9 +54,11 @@ class Newlead extends Component {
                 // this.setState({data:findresponse})
             })
     }
+
     refreshPage() {
         window.location.reload(false);
     }
+
     createUI() {
         return this.state.secondary_email2.map((el, i) =>
             <div key={i}>
@@ -58,6 +67,7 @@ class Newlead extends Component {
             </div>
         )
     }
+
     createUIPhone() {
         return this.state.secondary_phone2.map((q, r) =>
             <div key={r}>
@@ -66,35 +76,43 @@ class Newlead extends Component {
             </div>
         )
     }
+
     handleChangePhone(r, event) {
         let secondary_phone2 = [...this.state.secondary_phone2];
         secondary_phone2[r] = event.target.value;
         this.setState({ secondary_phone2 });
     }
+
     handleChange(i, event) {
         let secondary_email2 = [...this.state.secondary_email2];
         secondary_email2[i] = event.target.value;
         this.setState({ secondary_email2 });
     }
+
     addClick() {
         this.setState(prevState => ({ secondary_email2: [...prevState.secondary_email2, ''] }))
     }
+
     addClickPhone() {
         this.setState(prevState => ({ secondary_phone2: [...prevState.secondary_phone2, ''] }))
     }
+
     removeClick(i) {
         let secondary_email2 = [...this.state.secondary_email2];
         secondary_email2.splice(i, 1);
         this.setState({ secondary_email2 });
     }
+
     removeClickPhone(r) {
         let secondary_phone2 = [...this.state.secondary_phone2];
         secondary_phone2.splice(r, 1);
         this.setState({ secondary_phone2 });
     }
+
     changeHandler = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
+
     fileChangedHandler = (e) => {
         console.log(e.target.files[0])
         this.setState({ attachment: e.target.files[0] });
