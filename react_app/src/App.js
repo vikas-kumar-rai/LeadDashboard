@@ -27,6 +27,7 @@ render(){
       </ul>
         <Switch>
             <Route exact path ='/' component = {Login}/>
+            <Route path ='/Login' component = {Login}/>
             <Route path ='/LeadDashboard' component = {LeadDashboard}/>
             <Route path='/Newlead' component={Newlead}/>
             <Route exact exact path ='/Logout' component = {Logout}/>

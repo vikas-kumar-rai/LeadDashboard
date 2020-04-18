@@ -59,7 +59,7 @@ width: 300px;
 .prospectus{
     border:1px solid #000;
     width: 865px;
-    height: 390px;
+    height: max-content;
     margin-left: 110px;
     margin-top: -8px;
 }
@@ -116,12 +116,13 @@ width: 300px;
     margin-left: 151px;
     width: 170px;
 }
-/* .submitandnew{
-    margin-left: 110px;
+.errorMsgtitle{
+    margin-top: 3px;
 }
-.submit{
-    margin-right: 940px;
+.errorMsgsource{
+    margin-top: 17px;
 }
-.Cancle{
-    margin-left: 400px;
-} */
+.errorMsgtechnology{
+    margin-top: 42px;
+    margin-left: -10px;
+}
