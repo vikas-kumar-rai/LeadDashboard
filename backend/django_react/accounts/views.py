@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Accounts, Comments, Reject
-from .serializers import AccountsSerializer, CommentsSerializer, RejectSerializer
+from .models import Accounts, Comments, Reject, Sources, Domains, Technologys, AssignTo
+from .serializers import AccountsSerializer, CommentsSerializer, RejectSerializer, SourceSerializer, DomainSerializer, TechnologySerializer, AssignToSerializer
 from rest_framework import generics, viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -22,7 +22,7 @@ class AccountsListCreate(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-
+        print("atta: ", request.data['attachment'])
         # request.data['attachment']=None
 
         if request.data['secondary_email2']:
@@ -85,6 +85,71 @@ class RejectListCreate(APIView):
 
     def post(self, request, format=None):
         serializer = RejectSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class SourceListCreate(APIView):
+
+    def get(self, request, format=None):
+        source = Sources.objects.all()
+        serializer = SourceSerializer(source, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = SourceSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+class DomainListCreate(APIView):
+
+    def get(self, request, format=None):
+        domain = Domains.objects.all()
+        serializer = DomainSerializer(domain, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = DomainSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class TechnologyListCreate(APIView):
+
+    def get(self, request, format=None):
+        tech = Technologys.objects.all()
+        serializer = TechnologySerializer(tech, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = TechnologySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class AssignToListCreate(APIView):
+
+    def get(self, request, format=None):
+        assign = AssignTo.objects.all()
+        serializer = AssignToSerializer(assign, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = AssignToSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

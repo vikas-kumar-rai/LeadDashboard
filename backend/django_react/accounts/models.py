@@ -59,4 +59,18 @@ class Reject(models.Model):
     def __str__(self):
         return self.account_id
 
+class Sources(models.Model):
+    id = models.AutoField(primary_key=True)
+    source = models.CharField(max_length=25)
 
+class Domains(models.Model):
+    id = models.AutoField(primary_key=True)
+    domain = models.CharField(max_length=25)
+
+class Technologys(models.Model):
+    id = models.AutoField(primary_key=True)
+    technology = models.CharField(max_length=25)
+
+class AssignTo(models.Model):
+    id = models.AutoField(primary_key=True)
+    assign_tos = models.CharField(max_length=25)

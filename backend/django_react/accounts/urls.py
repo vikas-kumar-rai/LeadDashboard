@@ -14,5 +14,8 @@ urlpatterns = [
     path('reject', views.RejectListCreate.as_view() ),
     url(r'^auth-jwt/', obtain_jwt_token),
     url(r'^auth-jwt-refresh/', refresh_jwt_token),
-    url(r'^auth-jwt-verify/', verify_jwt_token),
+    path('source', views.SourceListCreate.as_view() ),
+    path('technology', views.TechnologyListCreate.as_view() ),
+    path('domain', views.DomainListCreate.as_view() ),
+    path('assign-to', views.AssignToListCreate.as_view() ),
 ]
