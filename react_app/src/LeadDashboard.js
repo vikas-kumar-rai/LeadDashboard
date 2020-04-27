@@ -2,9 +2,12 @@ import React from 'react';
 import {Redirect } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import {Container,Row,Col ,ListGroup, ListGroupItem} from 'reactstrap';
-
+import Logout from "./Logout"
 import './LeadDashboard.css';
 import AddDepModal from './AddDepModel';
+import {Nav,NavItem,NavLink} from 'reactstrap';
+
+const url = "http://localhost:8000/";
 class LeadDashboard extends React.Component{
   constructor(props){
     super(props);
@@ -35,7 +38,7 @@ class LeadDashboard extends React.Component{
 
     }
     componentDidMount(){
-        fetch("http://localhost:8000/", {
+        fetch(url, {
             headers: {
                 'Authorization': "JWT " + localStorage.getItem('token'),
                 'Content-Type': 'application/json',
@@ -57,7 +60,7 @@ class LeadDashboard extends React.Component{
 
      if(prevstate.toggle===true && this.state.toggle===false)
      {
-        fetch("http://127.0.0.1:8000/", {
+        fetch(url, {
             headers: {
                 'Authorization': "JWT " + localStorage.getItem('token'),
                 'Content-Type': 'application/json',
@@ -86,6 +89,16 @@ class LeadDashboard extends React.Component{
         }
         return(
             <div>
+                <div>
+                  <Nav tabs>
+                    <NavItem>
+                      <NavLink href="/Newlead">Newlead Form</NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink href="/Logout">Logout</NavLink>
+                    </NavItem>
+                  </Nav>
+                </div>
                  <Container className="themed-container" fluid="md">
                     <div className="block-example border border-dark">
                             <h1 className="text-center">Lead Dashboard</h1>

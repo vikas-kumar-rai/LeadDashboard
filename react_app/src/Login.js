@@ -3,6 +3,8 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import {Redirect } from "react-router-dom";
 import axios from 'axios';
 
+const login_url = "http://127.0.0.1:8000/auth-jwt/";
+
 class Login extends React.Component {
   constructor() {
     super();
@@ -31,7 +33,7 @@ handleChange = e => {
 
       e.preventDefault();
         console.log("LOgin data", this.state)
-        axios.post("http://127.0.0.1:8000/auth-jwt/", this.state)
+        axios.post(login_url, this.state)
             .then(response => {
                 console.log(response.data.token)
                 localStorage.setItem("token",response.data.token)

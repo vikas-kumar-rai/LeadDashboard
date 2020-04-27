@@ -5,5 +5,10 @@
     <orderEntry type="jdk" jdkName="Python 3.7 (venv)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="authentication project" />
+    <orderEntry type="module" module-name="registration" />
+    <orderEntry type="module" module-name="registration" />
+    <orderEntry type="module" module-name="registration" />
+    <orderEntry type="module" module-name="registration" />
+    <orderEntry type="module" module-name="session" />
   </component>
 </module>

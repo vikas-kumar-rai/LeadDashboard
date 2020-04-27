@@ -6,6 +6,7 @@ import './LMSSystem1.css';
 import { Modal, Button } from 'react-bootstrap';
 import { Row, Col } from 'reactstrap';
 
+const url = "http://127.0.0.1:8000/";
 class LMSSystem1 extends Component {
     constructor() {
         super();
@@ -14,7 +15,7 @@ class LMSSystem1 extends Component {
         }
     }
     componentDidMount() {
-        fetch("http://localhost:8000/", {
+        fetch(url, {
             headers: {
                 'Authorization': "JWT " + localStorage.getItem('token'),
                 'Content-Type': 'application/json',

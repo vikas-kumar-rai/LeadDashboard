@@ -13,16 +13,7 @@ from django.http import HttpResponse
 from rest_framework.parsers import MultiPartParser, FormParser,FileUploadParser
 from django.contrib.auth.models import User, auth
 
-'''class accountsListCreate(generics.ListCreateAPIView):
-    queryset = Accounts.objects.all()
-    serializer_class = AccountsSerializer
-'''
 
-
-
-
-
-# @login_required(login_url='http://localhost:3000/')
 class AccountsListCreate(APIView):
 
     def get(self, request, format=None):
@@ -31,11 +22,9 @@ class AccountsListCreate(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        # print("data is going to post")
-        # print("data is going to post")
-        # print(request.data['attachment'])
-        request.data['attachment']=None
-        # print("before if: ---------", request.data['attachment'])
+
+        # request.data['attachment']=None
+
         if request.data['secondary_email2']:
             if len(request.data['secondary_email2']) > 1:
                 request.data['secondary_email1'] = request.data['secondary_email2'][0]
@@ -54,9 +43,8 @@ class AccountsListCreate(APIView):
                 request.data['secondary_phone2'] = " "
         else:
             request.data['secondary_phone2'] = ""
+
         serializer = AccountsSerializer(data=request.data)
-        print("hellooo",serializer)
-        print("serializer")
         if serializer.is_valid():
             print("serializer is  valid")
             serializer.save()
@@ -64,24 +52,6 @@ class AccountsListCreate(APIView):
         print("error at:",serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    # def put(self, request, format=None):
-    #     print("I am hiting here")
-    #     # print(request.__dict__)
-    #     print("going to update")
-    #     print(request.data)
-    #     pk = request.data['Title']
-    #     # pk = Accounts.objects.get(Title = pk)
-    #     # snippet = self.get_object(pk)
-    #     stat = request.data['Status']
-    #     print("pk is: ", pk, 'status is: ',stat)
-    #     serializer = AccountsSerializer(pk, data=stat, partial= True)
-    #     print("serializer is: ",serializer)
-    #     if serializer.is_valid():
-    #         print("****** valid ******")
-    #         serializer.save()
-    #         return Response(serializer.data)
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    #
 
 
 

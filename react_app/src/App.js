@@ -5,22 +5,14 @@ import Newlead from './Newlead';
 import Login from "./Login";
 import Logout from "./Logout"
 import LeadDashboard from './LeadDashboard';
-import {Nav,NavItem,NavLink} from 'reactstrap';
 import {BrowserRouter as Router ,Route,Link,Switch} from "react-router-dom";
+
+
 class App extends React.Component {
 render(){
   return (
     <Router> 
-  <div>
-      <Nav tabs>
-        <NavItem>
-          <NavLink href="/Newlead">Newlead Form</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="/Logout">Logout</NavLink>
-        </NavItem>
-      </Nav>
-    </div>
+
     <div>
       <ul>
         < Link to="/"></Link>

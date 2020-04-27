@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Row,Col} from 'react-bootstrap';
 
 
+const comment_url = "http://127.0.0.1:8000/comment";
 class ResponseGenerated extends React.Component{
     constructor(){
         super();
@@ -11,7 +13,7 @@ class ResponseGenerated extends React.Component{
     }
 
     componentDidMount() {
-        fetch("http://127.0.0.1:8000/comment", {
+        fetch(comment_url, {
             headers: {
                     'Authorization': "JWT " + localStorage.getItem('token'),
                     'Content-Type': 'application/json',

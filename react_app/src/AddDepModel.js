@@ -8,6 +8,10 @@ import axios from 'axios';
 import './AddDepModel.css';
 import Pitched from './Pitched';
 import ResponseGenerated from './ResponseGenerated';
+
+
+const accounts_url = 'http://127.0.0.1:8000/accounts/';
+
 class AddDepModal extends Component{
     constructor(props){
         super(props);
@@ -29,7 +33,7 @@ class AddDepModal extends Component{
     }
     
     clickResponse(){
-      axios.put('http://127.0.0.1:8000/accounts/'+ this.props.id1+'/', {status: "ResponseGenerated"},{
+      axios.put(accounts_url + this.props.id1+'/', {status: "ResponseGenerated"},{
             headers: {
                 'Authorization': "JWT " + localStorage.getItem('token'),
                 'Content-Type': 'application/json',
@@ -60,7 +64,7 @@ class AddDepModal extends Component{
 
 //        window.location.reload(false);
       	e.preventDefault()
-            axios.put('http://127.0.0.1:8000/accounts/'+ this.props.id1+'/', {status: "Accepted",},{
+            axios.put(accounts_url + this.props.id1+'/', {status: "Accepted",},{
                 headers: {
                 'Authorization': "JWT " + localStorage.getItem('token'),
                 'Content-Type': 'application/json',
@@ -78,7 +82,7 @@ class AddDepModal extends Component{
       this.setState({toggle9:!this.state.toggle9})
 //      window.location.reload(false);
       	e.preventDefault()
-            axios.put('http://127.0.0.1:8000/accounts/'+ this.props.id1+'/', {status: "Pitched",},{
+            axios.put(accounts_url + this.props.id1+'/', {status: "Pitched",},{
                 headers: {
                 'Authorization': "JWT " + localStorage.getItem('token'),
                 'Content-Type': 'application/json',

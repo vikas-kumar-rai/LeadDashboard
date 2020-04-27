@@ -8,7 +8,7 @@ import './Comment.css';
 //import Comment  from './Comment';
 import axios from 'axios';
 
-const url="http://127.0.0.1:8000/comment";
+const comment_url="http://127.0.0.1:8000/comment";
 class Comments extends React.Component{
     constructor(props) {
         super(props);
@@ -21,7 +21,7 @@ class Comments extends React.Component{
       }
       
         componentDidMount(){
-                fetch(url).
+                fetch(comment_url).
                 then((Response)=>
                 Response.json()).
                 then((findresponse)=>
@@ -92,7 +92,7 @@ class Comment extends React.Component{
         submitHandler = e => {
 		e.preventDefault()
 
-		axios.post(url, this.state)
+		axios.post(comment_url, this.state)
 			.then(response => {
 				console.log(response);
 			})
