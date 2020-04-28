@@ -22,8 +22,9 @@ class AccountsListCreate(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        print("atta: ", request.data['attachment'])
-        # request.data['attachment']=None
+        print("data is going to post")
+        print(request.data)
+        request.data['attachment']=None
 
         if request.data['secondary_email2']:
             if len(request.data['secondary_email2']) > 1:
@@ -45,15 +46,14 @@ class AccountsListCreate(APIView):
             request.data['secondary_phone2'] = ""
 
         serializer = AccountsSerializer(data=request.data)
+        print("hellooo",serializer)
+        print("serializer")
         if serializer.is_valid():
             print("serializer is  valid")
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         print("error at:",serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-
 
 class AccountsListPut(viewsets.ModelViewSet):
     queryset = Accounts.objects.all()
@@ -154,3 +154,26 @@ class AssignToListCreate(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+from django.conf import settings
+import os, uuid, json
+def handle_uploaded_file(f):
+    ext = f.name.split('.')[-1]
+    upload = False
+    file_path = os.path.join(settings.BASE_DIR, 'media/upload/'+str(uuid.uuid4())+"."+ext)
+    with open(file_path, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+        upload = True
+        destination.close()
+    return upload
+
+class LeadAPIView(APIView):
+
+    def post(self, request, format="json"):
+        print("Going to created new Lead!!!!!!!!!!!!!!!")
+        data = json.loads(request.data['data'])
+        upload = handle_uploaded_file(request.FILES['file'])
+        # print(request.FILES['file'])
+        print("upload : ",upload)
+        return Response(True, status=status.HTTP_201_CREATED)

@@ -92,7 +92,7 @@ class LeadDashboard extends React.Component{
                 <div>
                   <Nav tabs>
                     <NavItem>
-                      <NavLink href="/Newlead">Newlead Form</NavLink>
+                      <NavLink href="/Newlead" className="newleadbutton">Newlead Form</NavLink>
                     </NavItem>
                     <NavItem>
                       <NavLink href="/Logout">Logout</NavLink>

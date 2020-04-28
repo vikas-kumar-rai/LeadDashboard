@@ -35,8 +35,8 @@ class AddDepModal extends Component{
     clickResponse(){
       axios.put(accounts_url + this.props.id1+'/', {status: "ResponseGenerated"},{
             headers: {
-                'Authorization': "JWT " + localStorage.getItem('token'),
-                'Content-Type': 'application/json',
+              'Authorization': "JWT " + localStorage.getItem('token'),
+              'Content-Type': 'application/json',
                 'accept': 'application/json'
                 }
       })

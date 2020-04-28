@@ -317,14 +317,43 @@ class Newlead extends Component {
 
     submitHandler = e => {
         e.preventDefault();
+
+        console.log("Going to submit form!!!!!!!!!!!!!!!");
         const isValid = this.validateForm();
-        if (isValid) {
-            console.log(this.state)
-            axios.post(url1, this.state, {
+        if (!isValid) {
+            console.log(this.state);
+            console.log(url1 + "new-lead/")
+            let fd = new FormData();
+            fd.append('file', this.state.attachment);
+            fd.append('data', JSON.stringify({
+                'title': this.state.title,
+                'source': this.state.source,
+                'description':this.state.description,
+                'url':this.state.url,
+                'domain':this.state.domain,
+                'tags':this.state.tags,
+                'technology':this.state.technology,
+                'assign_to':this.state.assign_to,
+                'estimated_budget':this.state.estimated_budget,
+                'referred_by':this.state.referred_by,
+                'full_name': this.state.full_name,
+                'email': this.state.email,
+                'company': this.state.company,
+                'designation': this.state.designation,
+                'skype_id': this.state.skype_id,
+                'street_address': this.state.street_address,
+                'city': this.state.city,
+                'state': this.state.state,
+                'country': this.state.country,
+                'phone': this.state.phone,
+                'status': this.state.status,
+            }))
+
+            axios.post(url1 + "new-lead/", fd, {
             headers: {
-                'Authorization': "JWT " + localStorage.getItem('token'),
-                'Content-Type': 'application/json',
-                'accept': 'application/json'
+                'Authorization': "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJ1c2VybmFtZSI6InN1cmluZGVyYiIsImV4cCI6MTU4ODAwMzQ3MiwiZW1haWwiOiJzdXJpbmRlcmJhdHRpQGdtYWlsLmNvbSJ9.H0_FC78KRdurKu127hP_EkjZ83EGHNNCREGYTMzvkGI",
+                // 'Content-Type': 'application/json',
+                // 'accept': 'application/json'
                 }
         })
                 .then(response => {
@@ -335,6 +364,7 @@ class Newlead extends Component {
                 })
             this.setState(this.handleSubmit);
         }
+
     }
 
     refreshPage = e => {
