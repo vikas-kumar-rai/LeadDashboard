@@ -160,7 +160,7 @@ import os, uuid, json
 def handle_uploaded_file(f):
     ext = f.name.split('.')[-1]
     upload = False
-    file_path = os.path.join(settings.BASE_DIR, 'media/upload/'+str(uuid.uuid4())+"."+ext)
+    file_path = os.path.join(settings.BASE_DIR, 'media/'+str(uuid.uuid4())+"."+ext)
     with open(file_path, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)

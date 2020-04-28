@@ -20,7 +20,7 @@ class Newlead extends Component {
             assign_to: '',
             estimated_budget: '',
             referred_by: '',
-            attachment: '',
+            attachment: null,
             full_name: '',
             email: '',
             company: '',
@@ -63,8 +63,8 @@ class Newlead extends Component {
         fetch("http://localhost:8000", {
             headers: {
                 'Authorization': "JWT " + localStorage.getItem('token'),
-                'Content-Type': 'application/json',
-                'accept': 'application/json'
+                'Content-Type': "multipart/form-data",
+                'accept': "multipart/form-data"
                 }
             })
             .then((Response) =>
@@ -118,9 +118,18 @@ class Newlead extends Component {
         this.setState({ secondary_phone2 });
     }
 
-    fileChangedHandler = (e) => {
-        console.log(e.target.files[0])
-        this.setState({ attachment: e.target.files[0] });
+    fileChangedHandler(e){
+        // this.setState({ [e.target.name]: e.target.value })
+        let attachment=e.target.files[0]
+        this.setState({attachment:attachment})
+        console.log(attachment)
+        // axios.post(url1,attachment)
+            
+        // console.warn("data file", files)
+        // console.log(e.target.files,"$$$$$")
+        // console.log(e.target.files[0],"$$$$$")
+        // let attachment=e.target.files[0]
+        // this.setState({ attachment: e.target.files[0] });
     }
 
     handleSubmit() {
@@ -213,7 +222,6 @@ class Newlead extends Component {
         if (!this.state.source) {
             error_source = "*Please select source.";
         }
-
 
         if (!this.state.description) {
             error_description = "*Description required";
@@ -317,43 +325,15 @@ class Newlead extends Component {
 
     submitHandler = e => {
         e.preventDefault();
-
-        console.log("Going to submit form!!!!!!!!!!!!!!!");
         const isValid = this.validateForm();
-        if (!isValid) {
-            console.log(this.state);
-            console.log(url1 + "new-lead/")
-            let fd = new FormData();
-            fd.append('file', this.state.attachment);
-            fd.append('data', JSON.stringify({
-                'title': this.state.title,
-                'source': this.state.source,
-                'description':this.state.description,
-                'url':this.state.url,
-                'domain':this.state.domain,
-                'tags':this.state.tags,
-                'technology':this.state.technology,
-                'assign_to':this.state.assign_to,
-                'estimated_budget':this.state.estimated_budget,
-                'referred_by':this.state.referred_by,
-                'full_name': this.state.full_name,
-                'email': this.state.email,
-                'company': this.state.company,
-                'designation': this.state.designation,
-                'skype_id': this.state.skype_id,
-                'street_address': this.state.street_address,
-                'city': this.state.city,
-                'state': this.state.state,
-                'country': this.state.country,
-                'phone': this.state.phone,
-                'status': this.state.status,
-            }))
-
-            axios.post(url1 + "new-lead/", fd, {
+        if (isValid) {
+            console.log(this.state)
+            console.log(this.state.attachment)
+            axios.post(url1, this.state,{
             headers: {
-                'Authorization': "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJ1c2VybmFtZSI6InN1cmluZGVyYiIsImV4cCI6MTU4ODAwMzQ3MiwiZW1haWwiOiJzdXJpbmRlcmJhdHRpQGdtYWlsLmNvbSJ9.H0_FC78KRdurKu127hP_EkjZ83EGHNNCREGYTMzvkGI",
-                // 'Content-Type': 'application/json',
-                // 'accept': 'application/json'
+                'Authorization': "JWT " + localStorage.getItem('token'),
+                'Content-Type': "multipart/form-data",
+                'accept': "multipart/form-data"
                 }
         })
                 .then(response => {
@@ -362,9 +342,8 @@ class Newlead extends Component {
                 .catch(error => {
                     console.log(error)
                 })
-            this.setState(this.handleSubmit);
+            // this.setState(this.handleSubmit);
         }
-
     }
 
     refreshPage = e => {
@@ -375,8 +354,8 @@ class Newlead extends Component {
             axios.post(url1, this.state, {
                 headers: {
                     'Authorization': "JWT " + localStorage.getItem('token'),
-                    'Content-Type': 'application/json',
-                    'accept': 'application/json'
+                    'Content-Type': "multipart/form-data",
+                    'accept': "multipart/form-data"
                     }
             })
             .then(response => {
@@ -390,7 +369,7 @@ class Newlead extends Component {
     }
 
     render() {
-        const { title, description, source, url, domain, tags, technology, assign_to, estimated_budget, referred_by, attachment, full_name, email, company, designation, skype_id, street_address, city, state, country, phone } = this.state
+        const {title, description, source, url, domain, tags, technology, assign_to, estimated_budget, referred_by, attachment, full_name, email, company, designation, skype_id, street_address, city, state, country, phone } = this.state
         return (
             <div>
                 {
@@ -422,7 +401,7 @@ class Newlead extends Component {
                         </div>
                     </Col>
                 </Row>
-                <form action="" method="post" name="form" enctype="multipart/form-data" onSubmit={this.submitHandler} id="create-course-form" required={this.required}>
+                <form action="" method="post" name="form" encType="multipart/form-data" onSubmit={this.submitHandler} id="create-course-form" required={this.required}>
                     <Row>
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <Label for="myid">Title*</Label><br></br>
@@ -466,7 +445,7 @@ class Newlead extends Component {
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <div>
                                 <Label for="attechment">Attachment</Label>
-                                <input type="file" id="file" onChange={this.fileChangedHandler} className="attachment" />
+                                <input type="file" name="attachment" accept=".jpg,.jpeg,.png,.doc, .docx, .ppt, .pptx, .txt, .pdf" id="attechment" onChange={(e)=>this.fileChangedHandler(e)} className="attachment" />
                             </div><br></br>
                         </Col>
                         <Col sm={{ size: 'auto', offset: 4 }}>
@@ -475,7 +454,7 @@ class Newlead extends Component {
                                 <select id="technology" name="technology" value={technology} onChange={this.changeHandler} className="technology">
                                     <option >choose any one</option>
                                     <option select>python</option>
-                                    <option select>node js</option>
+                                    <option select>node js</option> 
                                 </select>
                             </div>
                             <div style={{ color: "red", fontSize: "14px" }} className="errorMsgtechnology">{this.state.error_technology}</div>
@@ -513,7 +492,7 @@ class Newlead extends Component {
                             </div>
                         </Col>
                         <Col className="Existing">
-                            <button type="button" class="btn btn-link" onClick={this.getData}>Existing?</button>
+                            <button type="button" className="btn btn-link" onClick={this.getData}>Existing?</button>
                         </Col>
                     </Row>
                     <div className="prospectus"><br></br>

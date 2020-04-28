@@ -73,4 +73,4 @@ class Technologys(models.Model):
 
 class AssignTo(models.Model):
     id = models.AutoField(primary_key=True)
-    assign_to = models.CharField(max_length=25)
+    assign_tos = models.CharField(max_length=25)
